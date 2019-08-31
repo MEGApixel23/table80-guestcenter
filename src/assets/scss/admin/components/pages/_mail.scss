@@ -1,0 +1,6 @@
+.email-header {
+    position: sticky;
+    top: $header-height;
+    z-index: 99;
+    background: $template-body-color;
+}

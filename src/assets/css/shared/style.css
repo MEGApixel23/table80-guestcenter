@@ -8062,6 +8062,19 @@ textarea {
     -webkit-transform: scale(1.2);
             transform: scale(1.2); } }
 
+a {
+  color: #ff4c52; }
+  a:hover {
+    color: #f1272f; }
+
+.btn-primary, .step-wzard-container .btn-toolbar .sw-btn-next, .fc-state-default {
+  outline: none;
+  background-color: #ff4c52;
+  border-color: #f1272f; }
+  .btn-primary:hover, .step-wzard-container .btn-toolbar .sw-btn-next:hover, .fc-state-default:hover, .btn-primary:not(:disabled):not(.disabled):active, .step-wzard-container .btn-toolbar .sw-btn-next:not(:disabled):not(.disabled):active, .fc-state-default:not(:disabled):not(.disabled):active {
+    background-color: #ff4c52;
+    border-color: #f1272f; }
+
 /*-------------------------------------------------------------------*/
 /* === Component Styles === */
 /* Accordions */
@@ -11108,7 +11121,7 @@ table {
 .logo {
   display: block;
   margin: 0 auto;
-  width: 150px; }
+  width: 250px; }
   .logo img {
     width: 100%; }
 
@@ -11685,7 +11698,7 @@ table {
   min-height: 100vh;
   width: 100%;
   background: #fbfcfd;
-  padding: 10% 0 2px 0; }
+  padding: 7% 0 2px 0; }
   .authentication-theme.auth-style_1 .logo-section {
     margin-bottom: 50px; }
   .authentication-theme.auth-style_1 .grid-body {

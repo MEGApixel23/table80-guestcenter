@@ -1,5 +1,5 @@
 @import "./variables.css";
-@import "./round-table.css";
+@import "./dinner-table.css";
 
 .blueprint--container {
     border: 2px solid var(--blueprint--bold-divider--color);
@@ -25,12 +25,4 @@
     display: inline-block;
     width: var(--round-table--basic-radius);
     height: var(--round-table--basic-radius);
-}
-
-.chair {
-    position: absolute;
-    height: calc(var(--round-table--basic-radius) / 2);
-    width: calc(var(--round-table--basic-radius) / 2);
-    background-color: var(--chair--color);
-    z-index: 0;
 }

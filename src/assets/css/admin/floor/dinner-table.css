@@ -1,0 +1,39 @@
+.round-table {
+    position: absolute;
+    height: var(--round-table--basic-radius);
+    width: var(--round-table--basic-radius);
+    background-color: var(--table--color);
+    border-radius: 50%;
+}
+
+.square-table {
+    position: absolute;
+    height: var(--round-table--basic-radius);
+    width: var(--round-table--basic-radius);
+    background-color: var(--table--color);
+}
+
+.chair {
+    position: absolute;
+    height: calc(var(--round-table--basic-radius) / 2);
+    width: calc(var(--round-table--basic-radius) / 2);
+    top: calc(var(--round-table--basic-radius) / 2 * -1 / 8);
+    left: calc(var(--round-table--basic-radius) / 4);
+    background-color: var(--chair--color);
+    z-index: 0;
+}
+
+.chair:nth-of-type(2) {
+    top: calc(var(--round-table--basic-radius) / 2 * 9 / 8);
+    left: calc(var(--round-table--basic-radius) / 4);
+}
+
+.chair:nth-of-type(3) {
+    top: calc(var(--round-table--basic-radius) / 4);
+    left: calc(var(--round-table--basic-radius) / 4 * -2 / 8);
+}
+
+.chair:nth-of-type(4) {
+    top: calc(var(--round-table--basic-radius) / 4);
+    left: calc(var(--round-table--basic-radius) / 4 * 18 / 8);
+}

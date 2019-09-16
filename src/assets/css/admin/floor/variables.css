@@ -1,0 +1,11 @@
+:root {
+    --blueprint--bold-divider--color: #B4B4B4;
+    --blueprint--bold-divider--width: 2px;
+    --blueprint--regular-divider--color: #C3C1B7;
+    --blueprint--regular-divider--width: 1px;
+    --blueprint--background--color: #FFF;
+
+    --table--color: #BBB;
+    --chair--color: #000;
+    --round-table--basic-radius: 70px;
+}

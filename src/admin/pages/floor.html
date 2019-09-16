@@ -191,18 +191,31 @@
     <!-- partial:../partials/_sidebar.html -->
     <div class="sidebar">
         <ul class="navigation-menu">
-            <li class="nav-category-divider">MAIN</li>
             <li>
-                <a href="../index.html">
-                    <span class="link-title">Dashboard</span>
-                    <i class="mdi mdi-gauge link-icon"></i>
+                <a href="#main" data-toggle="collapse" aria-expanded="true">
+                    <span class="link-title">Main</span>
                 </a>
-            </li>
-            <li>
-                <a href="../pages/buttons.html">Buttons</a>
-            </li>
-            <li>
-                <a href="../pages/dropdowns.html">Dropdowns</a>
+                <ul class="navigation-submenu" id="main">
+                    <li>
+                        <div>Elements</div>
+                        <div>
+                            <div class="dinner-table--wrapper">
+                                <div class="dinner-table--container">
+                                    <div class="chair"></div>
+                                    <div class="round-table"></div>
+                                </div>
+                            </div>
+
+                            <div class="dinner-table--wrapper">
+                                <div class="dinner-table--container two-person">
+                                    <div class="chair"></div>
+                                    <div class="chair"></div>
+                                    <div class="round-table"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
             </li>
         </ul>
     </div>

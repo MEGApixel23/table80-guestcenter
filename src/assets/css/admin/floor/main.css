@@ -1,10 +1,5 @@
-:root {
-    --blueprint--bold-divider--color: #B4B4B4;
-    --blueprint--bold-divider--width: 2px;
-    --blueprint--regular-divider--color: #C3C1B7;
-    --blueprint--regular-divider--width: 1px;
-    --blueprint--background--color: #FFF;
-}
+@import "./variables.css";
+@import "./round-table.css";
 
 .blueprint--container {
     border: 2px solid var(--blueprint--bold-divider--color);
@@ -17,4 +12,25 @@
     background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
     width: calc(600px + var(--blueprint--bold-divider--width));
     height: calc(600px + var(--blueprint--bold-divider--width));
+}
+
+.dinner-table--wrapper {
+    display: inline-block;
+    padding: 10px;
+    border: 1px solid var(--table--color);
+}
+
+.dinner-table--container {
+    position: relative;
+    display: inline-block;
+    width: var(--round-table--basic-radius);
+    height: var(--round-table--basic-radius);
+}
+
+.chair {
+    position: absolute;
+    height: calc(var(--round-table--basic-radius) / 2);
+    width: calc(var(--round-table--basic-radius) / 2);
+    background-color: var(--chair--color);
+    z-index: 0;
 }

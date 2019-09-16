@@ -1,0 +1,20 @@
+:root {
+    --blueprint--bold-divider--color: #B4B4B4;
+    --blueprint--bold-divider--width: 2px;
+    --blueprint--regular-divider--color: #C3C1B7;
+    --blueprint--regular-divider--width: 1px;
+    --blueprint--background--color: #FFF;
+}
+
+.blueprint--container {
+    border: 2px solid var(--blueprint--bold-divider--color);
+    background-color: var(--blueprint--background--color);
+    background-image: linear-gradient(var(--blueprint--bold-divider--color) var(--blueprint--bold-divider--width), transparent var(--blueprint--bold-divider--width)),
+    linear-gradient(90deg, var(--blueprint--bold-divider--color) var(--blueprint--bold-divider--width), transparent var(--blueprint--bold-divider--width)),
+    linear-gradient(var(--blueprint--regular-divider--color) var(--blueprint--regular-divider--width), transparent var(--blueprint--regular-divider--width)),
+    linear-gradient(90deg, var(--blueprint--regular-divider--color) var(--blueprint--regular-divider--width), transparent var(--blueprint--regular-divider--width));
+    background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+    background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+    width: calc(600px + var(--blueprint--bold-divider--width));
+    height: calc(600px + var(--blueprint--bold-divider--width));
+}

@@ -13,6 +13,14 @@
     background-color: var(--table--color);
 }
 
+.rectangular-table {
+    position: absolute;
+    left: calc(var(--round-table--basic-radius) * 2 / 18);
+    height: var(--round-table--basic-radius);
+    width: calc(var(--round-table--basic-radius) * 7 / 9);
+    background-color: var(--table--color);
+}
+
 .chair {
     position: absolute;
     height: calc(var(--round-table--basic-radius) / 2);
@@ -24,7 +32,8 @@
 }
 
 .chair:nth-of-type(2) {
-    top: calc(var(--round-table--basic-radius) / 2 * 9 / 8);
+    top: auto;
+    bottom: calc(var(--round-table--basic-radius) / 2 * -1 / 8);
     left: calc(var(--round-table--basic-radius) / 4);
 }
 
@@ -35,5 +44,6 @@
 
 .chair:nth-of-type(4) {
     top: calc(var(--round-table--basic-radius) / 4);
-    left: calc(var(--round-table--basic-radius) / 4 * 18 / 8);
+    right: calc(var(--round-table--basic-radius) / 4 * -2 / 9);
+    left: auto;
 }

@@ -14,10 +14,15 @@
     height: calc(600px + var(--blueprint--bold-divider--width));
 }
 
+.elements-row {
+    font-size: 0;
+    letter-spacing: 0;
+}
+
 .dinner-table--wrapper {
     display: inline-block;
     padding: 10px;
-    border: 1px solid var(--table--color);
+    /*border: 1px solid var(--table--color);*/
 }
 
 .dinner-table--container {

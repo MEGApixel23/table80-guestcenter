@@ -2,7 +2,7 @@
     position: absolute;
 }
 
-.dinner-table--container > [class$=-table] {
+.dinner-table--container > [class*=-table] {
     border: 1px solid var(--table--border-color);
 }
 
@@ -20,15 +20,22 @@
 }
 
 .rectangular-table {
-    left: calc(var(--round-table--basic-radius) * 2 / 18);
+    left: calc(var(--round-table--basic-radius) * 1 / 9);
     height: var(--round-table--basic-radius);
     width: calc(var(--round-table--basic-radius) * 7 / 9);
     background-color: var(--table--color);
 }
 
 .rectangular-horizontal-table {
-    top: calc(var(--round-table--basic-radius) * 2 / 18);
+    top: calc(var(--round-table--basic-radius) * 1 / 9);
     height: calc(var(--round-table--basic-radius) * 7 / 9);
+    width: var(--round-table--basic-radius);
+    background-color: var(--table--color);
+}
+
+.rectangular-horizontal-table--6 {
+    top: calc(var(--round-table--basic-radius) * 2 / 9);
+    height: calc(var(--round-table--basic-radius) * 5 / 9);
     width: var(--round-table--basic-radius);
     background-color: var(--table--color);
 }
@@ -43,7 +50,7 @@
 }
 
 .chair:nth-of-type(2) {
-    top: auto;
+    top: unset;
     bottom: calc(var(--round-table--basic-radius) / 2 * -1 / 8);
     left: calc(var(--round-table--basic-radius) / 4);
 }
@@ -56,7 +63,7 @@
 .chair:nth-of-type(4) {
     top: calc(var(--round-table--basic-radius) / 4);
     right: calc(var(--round-table--basic-radius) / 4 * -2 / 9);
-    left: auto;
+    left: unset;
 }
 
 .chair[data-for="rectangular-horizontal-table"] {
@@ -68,20 +75,52 @@
 .chair[data-for="rectangular-horizontal-table"]:nth-of-type(2) {
     top: calc(var(--round-table--basic-radius) / 8 * -1 / 16);
     right: calc(var(--round-table--basic-radius) / 8);
-    left: auto;
+    left: unset;
 }
 
 .chair[data-for="rectangular-horizontal-table"]:nth-of-type(3) {
     bottom: calc(var(--round-table--basic-radius) / 8 * -1 / 16);
     left: calc(var(--round-table--basic-radius) / 8);
-    top: auto;
+    top: unset;
     width: calc(var(--round-table--basic-radius) / 3);
 }
 
 .chair[data-for="rectangular-horizontal-table"]:nth-of-type(4) {
     bottom: calc(var(--round-table--basic-radius) / 8 * -1 / 16);
     right: calc(var(--round-table--basic-radius) / 8);
-    top: auto;
-    left: auto;
+    top: unset;
+    left: unset;
     width: calc(var(--round-table--basic-radius) / 3);
+}
+
+.chair[data-for="rectangular-horizontal-table--6"] {
+    top: calc(var(--round-table--basic-radius) / 8 * 5 / 4);
+    left: calc(var(--round-table--basic-radius) / 8 * 1 / 2);
+    width: calc(var(--round-table--basic-radius) / 4);
+}
+
+.chair[data-for="rectangular-horizontal-table--6"]:nth-of-type(2) {
+    bottom: calc(var(--round-table--basic-radius) / 8 * 5 / 4);
+    left: calc(var(--round-table--basic-radius) / 8 * 1 / 2);
+    top: unset;
+}
+
+.chair[data-for="rectangular-horizontal-table--6"]:nth-of-type(3) {
+    left: calc(var(--round-table--basic-radius) / 8 * 6 / 2);
+}
+
+.chair[data-for="rectangular-horizontal-table--6"]:nth-of-type(4) {
+    left: calc(var(--round-table--basic-radius) / 8 * 6 / 2);
+    bottom: calc(var(--round-table--basic-radius) / 8 * 5 / 4);
+    top: unset;
+}
+
+.chair[data-for="rectangular-horizontal-table--6"]:nth-of-type(5) {
+    left: calc(var(--round-table--basic-radius) / 8 * 11 / 2);
+}
+
+.chair[data-for="rectangular-horizontal-table--6"]:nth-of-type(6) {
+    left: calc(var(--round-table--basic-radius) / 8 * 11 / 2);
+    bottom: calc(var(--round-table--basic-radius) / 8 * 5 / 4);
+    top: unset;
 }

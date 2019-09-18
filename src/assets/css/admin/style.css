@@ -559,132 +559,14 @@ footer {
   .page-body .page-content-wrapper {
     padding: 80px 20px 0px 20px; } }
 
-:root {
-  --blueprint--bold-divider--color: #B4B4B4;
-  --blueprint--bold-divider--width: 2px;
-  --blueprint--regular-divider--color: #C3C1B7;
-  --blueprint--regular-divider--width: 1px;
-  --blueprint--background--color: #FFF;
-  --table--color: #BBB;
-  --table--border-color: #D6D6D6;
-  --chair--color: #676767;
-  --round-table--basic-radius: 45px;
-  --dinner-table--wrapper--active-color: #e4e4e4; }
-
-.dinner-table--container > * {
-  position: absolute; }
-
-.dinner-table--container > [class*=-table] {
-  border: 1px solid var(--table--border-color); }
-
-.round-table {
-  height: var(--round-table--basic-radius);
-  width: var(--round-table--basic-radius);
-  background-color: var(--table--color);
-  border-radius: 50%; }
-
-.square-table {
-  height: var(--round-table--basic-radius);
-  width: var(--round-table--basic-radius);
-  background-color: var(--table--color); }
-
-.rectangular-table {
-  left: calc(var(--round-table--basic-radius) * 1 / 9);
-  height: var(--round-table--basic-radius);
-  width: calc(var(--round-table--basic-radius) * 7 / 9);
-  background-color: var(--table--color); }
-
-.rectangular-horizontal-table {
-  top: calc(var(--round-table--basic-radius) * 1 / 9);
-  height: calc(var(--round-table--basic-radius) * 7 / 9);
-  width: var(--round-table--basic-radius);
-  background-color: var(--table--color); }
-
-.rectangular-horizontal-table--6 {
-  top: calc(var(--round-table--basic-radius) * 2 / 9);
-  height: calc(var(--round-table--basic-radius) * 5 / 9);
-  width: var(--round-table--basic-radius);
-  background-color: var(--table--color); }
-
-.chair {
-  height: calc(var(--round-table--basic-radius) / 2);
-  width: calc(var(--round-table--basic-radius) / 2);
-  top: calc(var(--round-table--basic-radius) / 2 * -1 / 8);
-  left: calc(var(--round-table--basic-radius) / 4);
-  background-color: var(--chair--color);
-  z-index: 0; }
-
-.chair:nth-of-type(2) {
-  top: unset;
-  bottom: calc(var(--round-table--basic-radius) / 2 * -1 / 8);
-  left: calc(var(--round-table--basic-radius) / 4); }
-
-.chair:nth-of-type(3) {
-  top: calc(var(--round-table--basic-radius) / 4);
-  left: calc(var(--round-table--basic-radius) / 4 * -2 / 8); }
-
-.chair:nth-of-type(4) {
-  top: calc(var(--round-table--basic-radius) / 4);
-  right: calc(var(--round-table--basic-radius) / 4 * -2 / 9);
-  left: unset; }
-
-.chair[data-for="rectangular-horizontal-table"] {
-  top: calc(var(--round-table--basic-radius) / 8 * -1 / 16);
-  left: calc(var(--round-table--basic-radius) / 8);
-  width: calc(var(--round-table--basic-radius) / 3); }
-
-.chair[data-for="rectangular-horizontal-table"]:nth-of-type(2) {
-  top: calc(var(--round-table--basic-radius) / 8 * -1 / 16);
-  right: calc(var(--round-table--basic-radius) / 8);
-  left: unset; }
-
-.chair[data-for="rectangular-horizontal-table"]:nth-of-type(3) {
-  bottom: calc(var(--round-table--basic-radius) / 8 * -1 / 16);
-  left: calc(var(--round-table--basic-radius) / 8);
-  top: unset;
-  width: calc(var(--round-table--basic-radius) / 3); }
-
-.chair[data-for="rectangular-horizontal-table"]:nth-of-type(4) {
-  bottom: calc(var(--round-table--basic-radius) / 8 * -1 / 16);
-  right: calc(var(--round-table--basic-radius) / 8);
-  top: unset;
-  left: unset;
-  width: calc(var(--round-table--basic-radius) / 3); }
-
-.chair[data-for="rectangular-horizontal-table--6"] {
-  top: calc(var(--round-table--basic-radius) / 8 * 5 / 4);
-  left: calc(var(--round-table--basic-radius) / 8 * 1 / 2);
-  width: calc(var(--round-table--basic-radius) / 4); }
-
-.chair[data-for="rectangular-horizontal-table--6"]:nth-of-type(2) {
-  bottom: calc(var(--round-table--basic-radius) / 8 * 5 / 4);
-  left: calc(var(--round-table--basic-radius) / 8 * 1 / 2);
-  top: unset; }
-
-.chair[data-for="rectangular-horizontal-table--6"]:nth-of-type(3) {
-  left: calc(var(--round-table--basic-radius) / 8 * 6 / 2); }
-
-.chair[data-for="rectangular-horizontal-table--6"]:nth-of-type(4) {
-  left: calc(var(--round-table--basic-radius) / 8 * 6 / 2);
-  bottom: calc(var(--round-table--basic-radius) / 8 * 5 / 4);
-  top: unset; }
-
-.chair[data-for="rectangular-horizontal-table--6"]:nth-of-type(5) {
-  left: calc(var(--round-table--basic-radius) / 8 * 11 / 2); }
-
-.chair[data-for="rectangular-horizontal-table--6"]:nth-of-type(6) {
-  left: calc(var(--round-table--basic-radius) / 8 * 11 / 2);
-  bottom: calc(var(--round-table--basic-radius) / 8 * 5 / 4);
-  top: unset; }
-
 .blueprint--container {
-  border: 2px solid var(--blueprint--bold-divider--color);
-  background-color: var(--blueprint--background--color);
-  background-image: linear-gradient(var(--blueprint--bold-divider--color) var(--blueprint--bold-divider--width), transparent var(--blueprint--bold-divider--width)), linear-gradient(90deg, var(--blueprint--bold-divider--color) var(--blueprint--bold-divider--width), transparent var(--blueprint--bold-divider--width)), linear-gradient(var(--blueprint--regular-divider--color) var(--blueprint--regular-divider--width), transparent var(--blueprint--regular-divider--width)), linear-gradient(90deg, var(--blueprint--regular-divider--color) var(--blueprint--regular-divider--width), transparent var(--blueprint--regular-divider--width));
+  border: 2px solid #b4b4b4;
+  background-color: #fff;
+  background-image: linear-gradient(#b4b4b4 2px, transparent 2px), linear-gradient(90deg, #b4b4b4 2px, transparent 2px), linear-gradient(#c3c1b7 1px, transparent 1px), linear-gradient(90deg, #c3c1b7 1px, transparent 1px);
   background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
   background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
-  width: calc(600px + var(--blueprint--bold-divider--width));
-  height: calc(600px + var(--blueprint--bold-divider--width)); }
+  width: 600px;
+  height: 600px; }
 
 .elements-row {
   font-size: 0;
@@ -693,20 +575,14 @@ footer {
 .dinner-table--wrapper {
   cursor: pointer;
   display: inline-block;
-  border: 1px solid var(--table--border-color);
+  border: 1px solid #d6d6d6;
   transition: background-color 100ms; }
   .dinner-table--wrapper:hover {
-    background-color: var(--dinner-table--wrapper--active-color); }
+    background-color: #e4e4e4; }
   .dinner-table--wrapper:not(:first-of-type) {
     border-left: none; }
   .dinner-table--wrapper > * {
     width: 55px;
     height: 55px; }
-
-.dinner-table--container {
-  position: relative;
-  display: inline-block;
-  width: var(--round-table--basic-radius);
-  height: var(--round-table--basic-radius); }
 
 /*# sourceMappingURL=style.css.map */

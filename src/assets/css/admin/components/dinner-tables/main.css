@@ -1,34 +1,40 @@
 .blueprint--container {
-  border: 2px solid #b4b4b4;
+  border: 1px solid #c3c1b7;
   background-color: #fff;
-  background-image: linear-gradient(#b4b4b4 2px, transparent 2px), linear-gradient(90deg, #b4b4b4 2px, transparent 2px), linear-gradient(#c3c1b7 1px, transparent 1px), linear-gradient(90deg, #c3c1b7 1px, transparent 1px);
-  background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
-  background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+  position: relative;
   width: 80%;
   height: 80vh;
-  position: relative;
   display: inline-block;
-  vertical-align: top; }
+  padding: 20px; }
+  .blueprint--container .blueprint {
+    border: 2px solid #b4b4b4;
+    background-image: linear-gradient(#b4b4b4 2px, transparent 2px), linear-gradient(90deg, #b4b4b4 2px, transparent 2px), linear-gradient(#c3c1b7 1px, transparent 1px), linear-gradient(90deg, #c3c1b7 1px, transparent 1px);
+    background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+    background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+    width: 100%;
+    height: 100%;
+    vertical-align: top; }
 
 .elements--container {
   display: inline-block;
-  vertical-align: top; }
-
-.elements-row {
-  font-size: 0;
-  letter-spacing: 0; }
-
-.dinner-table--wrapper {
-  cursor: pointer;
-  display: inline-block;
-  border: 1px solid #d6d6d6;
-  transition: background-color 100ms; }
-  .dinner-table--wrapper:hover {
-    background-color: #e4e4e4; }
-  .dinner-table--wrapper:not(:first-of-type) {
-    border-left: none; }
-  .dinner-table--wrapper > * {
-    width: 55px;
-    height: 55px; }
+  vertical-align: top;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #c3c1b7; }
+  .elements--container .elements-row {
+    font-size: 0;
+    letter-spacing: 0; }
+  .elements--container .dinner-table--wrapper {
+    cursor: pointer;
+    display: inline-block;
+    border: 1px solid #d6d6d6;
+    transition: background-color 100ms; }
+    .elements--container .dinner-table--wrapper:hover {
+      background-color: #e4e4e4; }
+    .elements--container .dinner-table--wrapper:not(:first-of-type) {
+      border-left: none; }
+    .elements--container .dinner-table--wrapper > * {
+      width: 55px;
+      height: 55px; }
 
 /*# sourceMappingURL=main.css.map */

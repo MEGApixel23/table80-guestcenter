@@ -1,47 +1,61 @@
 @import "./variables";
 
+.workspace {
+    //background-color: $blueprint--regular-divider--color;
+}
+
 .blueprint--container {
-    border: 2px solid $blueprint--bold-divider--color;
+    border: 1px solid $blueprint--regular-divider--color;
     background-color: $blueprint--background--color;
-    background-image: linear-gradient($blueprint--bold-divider--color $blueprint--bold-divider--width, transparent $blueprint--bold-divider--width),
-    linear-gradient(90deg, $blueprint--bold-divider--color $blueprint--bold-divider--width, transparent $blueprint--bold-divider--width),
-    linear-gradient($blueprint--regular-divider--color $blueprint--regular-divider--width, transparent $blueprint--regular-divider--width),
-    linear-gradient(90deg, $blueprint--regular-divider--color $blueprint--regular-divider--width, transparent $blueprint--regular-divider--width);
-    background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
-    background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+    position: relative;
     width: 80%;
     height: 80vh;
-    position: relative;
     display: inline-block;
-    vertical-align: top;
+    padding: 20px;
+
+    .blueprint {
+        border: 2px solid $blueprint--bold-divider--color;
+        background-image: linear-gradient($blueprint--bold-divider--color $blueprint--bold-divider--width, transparent $blueprint--bold-divider--width),
+        linear-gradient(90deg, $blueprint--bold-divider--color $blueprint--bold-divider--width, transparent $blueprint--bold-divider--width),
+        linear-gradient($blueprint--regular-divider--color $blueprint--regular-divider--width, transparent $blueprint--regular-divider--width),
+        linear-gradient(90deg, $blueprint--regular-divider--color $blueprint--regular-divider--width, transparent $blueprint--regular-divider--width);
+        background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+        background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+        width: 100%;
+        height: 100%;
+        vertical-align: top;
+    }
 }
 
 .elements--container {
     display: inline-block;
     vertical-align: top;
-}
+    padding: 10px;
+    background-color: $blueprint--background--color;
+    border: 1px solid $blueprint--regular-divider--color;
 
-.elements-row {
-    font-size: 0;
-    letter-spacing: 0;
-}
-
-.dinner-table--wrapper {
-    cursor: pointer;
-    display: inline-block;
-    border: 1px solid $dinner-table--border-color;
-    transition: background-color 100ms;
-
-    &:hover {
-        background-color: $dinner-table--active-color;
+    .elements-row {
+        font-size: 0;
+        letter-spacing: 0;
     }
 
-    &:not(:first-of-type) {
-        border-left: none;
-    }
+    .dinner-table--wrapper {
+        cursor: pointer;
+        display: inline-block;
+        border: 1px solid $dinner-table--border-color;
+        transition: background-color 100ms;
 
-    & > * {
-        width: $dinner-table--el-size;
-        height: $dinner-table--el-size;
+        &:hover {
+            background-color: $dinner-table--active-color;
+        }
+
+        &:not(:first-of-type) {
+            border-left: none;
+        }
+
+        & > * {
+            width: $dinner-table--el-size;
+            height: $dinner-table--el-size;
+        }
     }
 }

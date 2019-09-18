@@ -8,9 +8,9 @@
         <image width="100" height="100" xlink:href="basic/round-table.svg"/>
     </g>
     <g id="chairs">
-        <image width="100" height="100" xlink:href="basic/chair-round-table-normal.svg"/>
-        <image width="100" height="100" xlink:href="basic/chair-round-table-normal.svg" transform="rotate(180,50,50)"/>
-        <image width="100" height="100" xlink:href="basic/chair-round-table-normal.svg" transform="rotate(90,50,50)"/>
-        <image width="100" height="100" xlink:href="basic/chair-round-table-normal.svg" transform="rotate(270,50,50)"/>
+        <image width="100" height="100" xlink:href="basic/chair-round-table-large.svg"/>
+        <image width="100" height="100" xlink:href="basic/chair-round-table-large.svg" transform="rotate(180,50,50)"/>
+        <image width="100" height="100" xlink:href="basic/chair-round-table-large.svg" transform="rotate(90,50,50)"/>
+        <image width="100" height="100" xlink:href="basic/chair-round-table-large.svg" transform="rotate(270,50,50)"/>
     </g>
 </svg>

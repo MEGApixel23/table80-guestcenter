@@ -11,7 +11,7 @@
         <image width="100" height="100" xlink:href="basic/chair-round-table-medium.svg"/>
         <image width="100" height="100" xlink:href="basic/chair-round-table-medium.svg" transform="rotate(59.9,50,50)"/>
         <image width="100" height="100" xlink:href="basic/chair-round-table-medium.svg" transform="rotate(119.9,50,50)"/>
-        <image width="100" height="100" xlink:href="basic/chair-round-table-medium.svg" transform="rotate(179.9,50,50)"/>
+        <image width="100" height="100" xlink:href="basic/chair-round-table-medium.svg" transform="rotate(180,50,50)"/>
         <image width="100" height="100" xlink:href="basic/chair-round-table-medium.svg" transform="rotate(239.9,50,50)"/>
         <image width="100" height="100" xlink:href="basic/chair-round-table-medium.svg" transform="rotate(299.9,50,50)"/>
     </g>

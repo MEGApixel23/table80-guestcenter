@@ -22,17 +22,21 @@
 .dinner-table--wrapper {
     cursor: pointer;
     display: inline-block;
-    padding: 10px;
     border: 1px solid var(--table--border-color);
     transition: background-color 100ms;
-}
 
-.dinner-table--wrapper:hover {
-    background-color: var(--dinner-table--wrapper--active-color);
-}
+    &:hover {
+        background-color: var(--dinner-table--wrapper--active-color);
+    }
 
-.dinner-table--wrapper:not(:first-of-type) {
-    border-left: none;
+    &:not(:first-of-type) {
+        border-left: none;
+    }
+
+    & > * {
+        width: $table-el-size;
+        height: $table-el-size;
+    }
 }
 
 .dinner-table--container {

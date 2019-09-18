@@ -132,15 +132,15 @@
 .dinner-table--wrapper {
   cursor: pointer;
   display: inline-block;
-  padding: 10px;
   border: 1px solid var(--table--border-color);
   transition: background-color 100ms; }
-
-.dinner-table--wrapper:hover {
-  background-color: var(--dinner-table--wrapper--active-color); }
-
-.dinner-table--wrapper:not(:first-of-type) {
-  border-left: none; }
+  .dinner-table--wrapper:hover {
+    background-color: var(--dinner-table--wrapper--active-color); }
+  .dinner-table--wrapper:not(:first-of-type) {
+    border-left: none; }
+  .dinner-table--wrapper > * {
+    width: 55px;
+    height: 55px; }
 
 .dinner-table--container {
   position: relative;

@@ -565,9 +565,15 @@ footer {
   background-image: linear-gradient(#b4b4b4 2px, transparent 2px), linear-gradient(90deg, #b4b4b4 2px, transparent 2px), linear-gradient(#c3c1b7 1px, transparent 1px), linear-gradient(90deg, #c3c1b7 1px, transparent 1px);
   background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
   background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
-  width: 100%;
+  width: 80%;
   height: 80vh;
-  position: relative; }
+  position: relative;
+  display: inline-block;
+  vertical-align: top; }
+
+.elements--container {
+  display: inline-block;
+  vertical-align: top; }
 
 .elements-row {
   font-size: 0;

@@ -6,8 +6,8 @@
 
 .operational-space {
     position: relative;
-    width: calc(100% - 200px);
-    height: 90vh;
+    width: 542px;
+    height: 623px;
     display: inline-block;
 
     .controls {
@@ -19,6 +19,16 @@
 
         & * {
             margin-bottom: 0;
+        }
+
+        .btn {
+            background-color: $blueprint--background--color;
+            cursor: pointer;
+        }
+
+        .btn.active {
+            background-color: $accent-color;
+            color: $blueprint--background--color;
         }
     }
 }
@@ -46,14 +56,75 @@
     }
 }
 
-.elements--container {
+.left-sidebar {
     display: inline-block;
     vertical-align: top;
-    padding-top: 10px;
+}
+
+.floors-dropdown {
+    margin-left: 10px;
+    width: 152px;
+    margin-top: 10px;
+
+    & > button {
+        justify-content: left;
+        padding: 5px 12px;
+        background-color: $blueprint--background--color;
+        border-radius: 1px;
+
+        &::after {
+            color: $no-accent-color;
+            margin-left: 87px;
+        }
+    }
+
+    .dropdown-menu {
+        border: 1px solid $no-accent-color;
+
+        span {
+            position: absolute;
+            right: 10px;
+        }
+
+        & > * {
+            padding: 5px 11px;
+        }
+
+        input {
+            padding: 2px 7px;
+        }
+
+        a.dropdown-item:hover {
+            background-color: $accent-color;
+            border-color: $accent-color;
+            color: $blueprint--background--color;
+        }
+
+        .form-control:focus {
+            color: #495057;
+            background-color: #f8f9fb;
+            border-color: $accent-color;
+            border-radius: 1px;
+            outline: 0;
+            box-shadow: 0 1px 3px $accent-color, 0 1px 2px $accent-color;
+        }
+    }
+
+    .add-floor-button {
+        background-color: $no-accent-color;
+        color: $blueprint--background--color;
+    }
+}
+
+.elements--container {
     margin: 10px;
     background-color: $blueprint--background--color;
     border: none;
     box-shadow: $container--shadow;
+
+    .elements-header {
+        padding: 10px 12px;
+    }
 
     .elements-row {
         font-size: 0;

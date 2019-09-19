@@ -3,8 +3,8 @@
 
 .operational-space {
   position: relative;
-  width: calc(100% - 200px);
-  height: 90vh;
+  width: 542px;
+  height: 623px;
   display: inline-block; }
   .operational-space .controls {
     margin: 10px 0 0 10px;
@@ -14,6 +14,12 @@
     border-radius: 0.25rem; }
     .operational-space .controls * {
       margin-bottom: 0; }
+    .operational-space .controls .btn {
+      background-color: #fff;
+      cursor: pointer; }
+    .operational-space .controls .btn.active {
+      background-color: #93beee;
+      color: #fff; }
 
 .blueprint--container {
   border: none;
@@ -32,14 +38,53 @@
     height: 100%;
     vertical-align: top; }
 
-.elements--container {
+.left-sidebar {
   display: inline-block;
-  vertical-align: top;
-  padding-top: 10px;
+  vertical-align: top; }
+
+.floors-dropdown {
+  margin-left: 10px;
+  width: 152px;
+  margin-top: 10px; }
+  .floors-dropdown > button {
+    justify-content: left;
+    padding: 5px 12px;
+    background-color: #fff;
+    border-radius: 1px; }
+    .floors-dropdown > button::after {
+      color: #b8b8bd;
+      margin-left: 87px; }
+  .floors-dropdown .dropdown-menu {
+    border: 1px solid #b8b8bd; }
+    .floors-dropdown .dropdown-menu span {
+      position: absolute;
+      right: 10px; }
+    .floors-dropdown .dropdown-menu > * {
+      padding: 5px 11px; }
+    .floors-dropdown .dropdown-menu input {
+      padding: 2px 7px; }
+    .floors-dropdown .dropdown-menu a.dropdown-item:hover {
+      background-color: #93beee;
+      border-color: #93beee;
+      color: #fff; }
+    .floors-dropdown .dropdown-menu .form-control:focus {
+      color: #495057;
+      background-color: #f8f9fb;
+      border-color: #93beee;
+      border-radius: 1px;
+      outline: 0;
+      box-shadow: 0 1px 3px #93beee, 0 1px 2px #93beee; }
+  .floors-dropdown .add-floor-button {
+    background-color: #b8b8bd;
+    color: #fff; }
+
+.elements--container {
   margin: 10px;
   background-color: #fff;
   border: none;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }
+  .elements--container .elements-header {
+    padding: 10px 12px; }
   .elements--container .elements-row {
     font-size: 0;
     letter-spacing: 0; }

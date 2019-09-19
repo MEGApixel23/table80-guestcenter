@@ -1,5 +1,5 @@
 .workspace {
-  background-color: #edebee; }
+  background-color: #f0f0f0; }
 
 .operational-space {
   position: relative;
@@ -9,7 +9,7 @@
   .operational-space .controls {
     margin: 10px 0 0 10px;
     display: inline-block;
-    background-color: #edebee; }
+    background-color: #f0f0f0; }
 
 .blueprint--container {
   border: 1px solid #c3c1b7;
@@ -17,7 +17,7 @@
   width: 100%;
   height: calc(100% - 80px);
   padding: 20px;
-  margin-top: 10px; }
+  margin-top: 7px; }
   .blueprint--container .blueprint {
     border: 2px solid #b4b4b4;
     background-image: linear-gradient(#b4b4b4 2px, transparent 2px), linear-gradient(90deg, #b4b4b4 2px, transparent 2px), linear-gradient(#c3c1b7 1px, transparent 1px), linear-gradient(90deg, #c3c1b7 1px, transparent 1px);

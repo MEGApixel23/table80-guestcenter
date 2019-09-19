@@ -2,7 +2,7 @@
     <style type="text/css">
         .chair {
             stroke: none;
-            fill: #676767;
+            fill: rgb(79, 76, 83);
         }
     </style>
 

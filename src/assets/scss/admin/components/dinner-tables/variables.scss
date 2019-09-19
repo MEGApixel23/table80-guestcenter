@@ -4,6 +4,10 @@ $blueprint--bold-divider--width: 2px;
 $blueprint--regular-divider--color: #c3c1b7;
 $blueprint--regular-divider--width: 1px;
 
-$dinner-table--el-size: 55px;
+$dinner-table--el-size: 40px;
+$dinner-table--el-padding: 5px;
 $dinner-table--active-color: #e4e4e4;
 $dinner-table--border-color: #d6d6d6;
+$dinner-table--border-style: 1px solid $dinner-table--border-color;
+
+$workspace--background-color: rgb(237, 235, 238);

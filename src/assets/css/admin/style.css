@@ -559,14 +559,26 @@ footer {
   .page-body .page-content-wrapper {
     padding: 80px 20px 0px 20px; } }
 
+.workspace {
+  background-color: #edebee; }
+
+.operational-space {
+  position: relative;
+  width: calc(100% - 200px);
+  height: 90vh;
+  display: inline-block; }
+  .operational-space .controls {
+    margin: 10px 0 0 10px;
+    display: inline-block;
+    background-color: #edebee; }
+
 .blueprint--container {
   border: 1px solid #c3c1b7;
   background-color: #fff;
-  position: relative;
-  width: 80%;
-  height: 80vh;
-  display: inline-block;
-  padding: 20px; }
+  width: 100%;
+  height: calc(100% - 80px);
+  padding: 20px;
+  margin-top: 10px; }
   .blueprint--container .blueprint {
     border: 2px solid #b4b4b4;
     background-image: linear-gradient(#b4b4b4 2px, transparent 2px), linear-gradient(90deg, #b4b4b4 2px, transparent 2px), linear-gradient(#c3c1b7 1px, transparent 1px), linear-gradient(90deg, #c3c1b7 1px, transparent 1px);
@@ -579,9 +591,10 @@ footer {
 .elements--container {
   display: inline-block;
   vertical-align: top;
-  padding: 10px;
+  padding-top: 10px;
+  margin: 10px;
   background-color: #fff;
-  border: 1px solid #c3c1b7; }
+  border: 1px solid #d6d6d6; }
   .elements--container .elements-row {
     font-size: 0;
     letter-spacing: 0; }
@@ -589,13 +602,22 @@ footer {
     cursor: pointer;
     display: inline-block;
     border: 1px solid #d6d6d6;
-    transition: background-color 100ms; }
+    transition: background-color 100ms;
+    border-left: none;
+    padding: 5px; }
+    .elements--container .dinner-table--wrapper:last-of-type {
+      border-right: none; }
     .elements--container .dinner-table--wrapper:hover {
       background-color: #e4e4e4; }
-    .elements--container .dinner-table--wrapper:not(:first-of-type) {
-      border-left: none; }
     .elements--container .dinner-table--wrapper > * {
-      width: 55px;
-      height: 55px; }
+      width: 40px;
+      height: 40px; }
+  .elements--container .elements-row:not(:first-of-type) .dinner-table--wrapper {
+    border-bottom: none; }
+  .elements--container .elements-row:nth-last-child(2) .dinner-table--wrapper {
+    border-bottom: 1px solid #d6d6d6; }
+  .elements--container .elements-row:last-of-type .dinner-table--wrapper {
+    border-right: 1px solid #d6d6d6;
+    border-top: none; }
 
 /*# sourceMappingURL=style.css.map */

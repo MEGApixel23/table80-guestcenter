@@ -1,17 +1,29 @@
 @import "./variables";
 
 .workspace {
-    //background-color: $blueprint--regular-divider--color;
+    background-color: $workspace--background-color;
+}
+
+.operational-space {
+    position: relative;
+    width: calc(100% - 200px);
+    height: 90vh;
+    display: inline-block;
+
+    .controls {
+        margin: 10px 0 0 10px;
+        display: inline-block;
+        background-color: $workspace--background-color;
+    }
 }
 
 .blueprint--container {
     border: 1px solid $blueprint--regular-divider--color;
     background-color: $blueprint--background--color;
-    position: relative;
-    width: 80%;
-    height: 80vh;
-    display: inline-block;
+    width: 100%;
+    height: calc(100% - 80px);;
     padding: 20px;
+    margin-top: 10px;
 
     .blueprint {
         border: 2px solid $blueprint--bold-divider--color;
@@ -30,9 +42,10 @@
 .elements--container {
     display: inline-block;
     vertical-align: top;
-    padding: 10px;
+    padding-top: 10px;
+    margin: 10px;
     background-color: $blueprint--background--color;
-    border: 1px solid $blueprint--regular-divider--color;
+    border: $dinner-table--border-style;
 
     .elements-row {
         font-size: 0;
@@ -42,20 +55,35 @@
     .dinner-table--wrapper {
         cursor: pointer;
         display: inline-block;
-        border: 1px solid $dinner-table--border-color;
+        border: $dinner-table--border-style;
         transition: background-color 100ms;
+        border-left: none;
+        padding: $dinner-table--el-padding;
+
+        &:last-of-type {
+            border-right: none;
+        }
 
         &:hover {
             background-color: $dinner-table--active-color;
-        }
-
-        &:not(:first-of-type) {
-            border-left: none;
         }
 
         & > * {
             width: $dinner-table--el-size;
             height: $dinner-table--el-size;
         }
+    }
+
+    & .elements-row:not(:first-of-type) .dinner-table--wrapper {
+        border-bottom: none;
+    }
+
+    & .elements-row:nth-last-child(2) .dinner-table--wrapper {
+        border-bottom: $dinner-table--border-style;
+    }
+
+    & .elements-row:last-of-type .dinner-table--wrapper {
+        border-right: $dinner-table--border-style;
+        border-top: none;
     }
 }

@@ -14,16 +14,23 @@
         margin: 10px 0 0 10px;
         display: inline-block;
         background-color: $workspace--background-color;
+        box-shadow: $container--shadow;
+        border-radius: 0.25rem;
+
+        & * {
+            margin-bottom: 0;
+        }
     }
 }
 
 .blueprint--container {
-    border: 1px solid $blueprint--regular-divider--color;
+    border: none;
     background-color: $blueprint--background--color;
     width: 100%;
     height: calc(100% - 80px);;
     padding: 20px;
-    margin-top: 7px;
+    margin-top: 10px;
+    box-shadow: $container--shadow;
 
     .blueprint {
         border: 2px solid $blueprint--bold-divider--color;
@@ -45,7 +52,8 @@
     padding-top: 10px;
     margin: 10px;
     background-color: $blueprint--background--color;
-    border: $dinner-table--border-style;
+    border: none;
+    box-shadow: $container--shadow;
 
     .elements-row {
         font-size: 0;

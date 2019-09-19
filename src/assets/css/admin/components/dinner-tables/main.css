@@ -1,15 +1,15 @@
-.workspace {
-  background-color: #f0f0f0; }
+.floor--wrapper {
+  margin-top: 60px;
+  background-color: #f3f2f4; }
 
 .operational-space {
   position: relative;
-  width: 542px;
-  height: 623px;
+  min-width: calc(100% - 200px - 152px - 70px);
   display: inline-block; }
   .operational-space .controls {
     margin: 10px 0 0 10px;
     display: inline-block;
-    background-color: #f0f0f0;
+    background-color: #f3f2f4;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     border-radius: 0.25rem; }
     .operational-space .controls * {
@@ -24,23 +24,35 @@
 .blueprint--container {
   border: none;
   background-color: #fff;
-  width: 100%;
-  height: calc(100% - 80px);
+  height: 440px;
+  width: 540px;
   padding: 20px;
   margin-top: 10px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }
   .blueprint--container .blueprint {
-    border: 2px solid #b4b4b4;
-    background-image: linear-gradient(#b4b4b4 2px, transparent 2px), linear-gradient(90deg, #b4b4b4 2px, transparent 2px), linear-gradient(#c3c1b7 1px, transparent 1px), linear-gradient(90deg, #c3c1b7 1px, transparent 1px);
+    border: 2px solid #f0eff0;
+    background-image: linear-gradient(#f0eff0 2px, transparent 2px), linear-gradient(90deg, #f0eff0 2px, transparent 2px), linear-gradient(#f0eff0 1px, transparent 1px), linear-gradient(90deg, #f0eff0 1px, transparent 1px);
     background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
     background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
     width: 100%;
     height: 100%;
     vertical-align: top; }
 
-.left-sidebar {
+.workspace-sidebar {
   display: inline-block;
   vertical-align: top; }
+
+.properties-table {
+  max-width: 200px;
+  margin-top: 10px;
+  margin-left: 10px;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  border-radius: 1px; }
+  .properties-table > * {
+    padding: 8px 10px; }
+  .properties-table .properties-table--header {
+    font-weight: bold; }
 
 .floors-dropdown {
   margin-left: 10px;
@@ -61,22 +73,10 @@
       right: 10px; }
     .floors-dropdown .dropdown-menu > * {
       padding: 5px 11px; }
-    .floors-dropdown .dropdown-menu input {
-      padding: 2px 7px; }
     .floors-dropdown .dropdown-menu a.dropdown-item:hover {
       background-color: #93beee;
       border-color: #93beee;
       color: #fff; }
-    .floors-dropdown .dropdown-menu .form-control:focus {
-      color: #495057;
-      background-color: #f8f9fb;
-      border-color: #93beee;
-      border-radius: 1px;
-      outline: 0;
-      box-shadow: 0 1px 3px #93beee, 0 1px 2px #93beee; }
-  .floors-dropdown .add-floor-button {
-    background-color: #b8b8bd;
-    color: #fff; }
 
 .elements--container {
   margin: 10px;
@@ -97,8 +97,6 @@
     padding: 5px; }
     .elements--container .dinner-table--wrapper:last-of-type {
       border-right: none; }
-    .elements--container .dinner-table--wrapper:hover {
-      background-color: #e4e4e4; }
     .elements--container .dinner-table--wrapper > * {
       width: 40px;
       height: 40px; }

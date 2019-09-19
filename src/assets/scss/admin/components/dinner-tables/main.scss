@@ -1,13 +1,13 @@
 @import "./variables";
 
-.workspace {
+.floor--wrapper {
+    margin-top: 60px;
     background-color: $workspace--background-color;
 }
 
 .operational-space {
     position: relative;
-    width: 542px;
-    height: 623px;
+    min-width: calc(100% - #{$properties-table--width} - #{$floors-dropdown--width} - 70px);
     display: inline-block;
 
     .controls {
@@ -36,8 +36,8 @@
 .blueprint--container {
     border: none;
     background-color: $blueprint--background--color;
-    width: 100%;
-    height: calc(100% - 80px);;
+    height: 440px;
+    width: 540px;
     padding: 20px;
     margin-top: 10px;
     box-shadow: $container--shadow;
@@ -56,14 +56,31 @@
     }
 }
 
-.left-sidebar {
+.workspace-sidebar {
     display: inline-block;
     vertical-align: top;
 }
 
+.properties-table {
+    max-width: $properties-table--width;
+    margin-top: 10px;
+    margin-left: 10px;
+    background-color: $blueprint--background--color;
+    box-shadow: $container--shadow;
+    border-radius: 1px;
+
+    & > * {
+        padding: 8px 10px;
+    }
+
+    .properties-table--header {
+        font-weight: bold;
+    }
+}
+
 .floors-dropdown {
     margin-left: 10px;
-    width: 152px;
+    width: $floors-dropdown--width;
     margin-top: 10px;
 
     & > button {
@@ -90,29 +107,11 @@
             padding: 5px 11px;
         }
 
-        input {
-            padding: 2px 7px;
-        }
-
         a.dropdown-item:hover {
             background-color: $accent-color;
             border-color: $accent-color;
             color: $blueprint--background--color;
         }
-
-        .form-control:focus {
-            color: #495057;
-            background-color: #f8f9fb;
-            border-color: $accent-color;
-            border-radius: 1px;
-            outline: 0;
-            box-shadow: 0 1px 3px $accent-color, 0 1px 2px $accent-color;
-        }
-    }
-
-    .add-floor-button {
-        background-color: $no-accent-color;
-        color: $blueprint--background--color;
     }
 }
 
@@ -141,10 +140,6 @@
 
         &:last-of-type {
             border-right: none;
-        }
-
-        &:hover {
-            background-color: $dinner-table--active-color;
         }
 
         & > * {

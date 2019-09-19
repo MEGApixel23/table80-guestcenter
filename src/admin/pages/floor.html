@@ -55,7 +55,7 @@
             </button>
             <form action="#" class="t-header-search-box">
                 <div class="input-group">
-                    <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Search" autocomplete="off">
+                    <input type="text" class="form-control form-control-std" id="inlineFormInputGroup" placeholder="Search" autocomplete="off">
                     <button class="btn btn-primary" type="submit"><i class="mdi mdi-arrow-right-thick"></i></button>
                 </div>
             </form>
@@ -207,9 +207,9 @@
         </ul>
     </div>
     <!-- partial -->
-    <div class="page-content-wrapper pr-0 pl-0 pt-0">
+    <div class="page-content-wrapper pr-0 pl-0 pt-0 floor--wrapper">
         <div class="content-viewport workspace">
-            <div class="left-sidebar">
+            <div class="workspace-sidebar">
                 <div class="btn-group floors-dropdown">
                     <button type="button"
                             class="btn dropdown-toggle"
@@ -235,10 +235,10 @@
                             <span class="fa fa-pencil"></span>
                         </a>
                         <div class="dropdown-item">
-                            <input type="text" class="form-control" placeholder="Enter a name">
+                            <input type="text" class="form-control form-control-std" placeholder="Enter a name">
                         </div>
                         <div class="dropdown-item">
-                            <button type="button" class="btn add-floor-button btn-block">Add</button>
+                            <button type="button" class="btn btn-std btn-block">Add</button>
                         </div>
                     </div>
                 </div>
@@ -340,10 +340,56 @@
                     <div id="blueprint" class="blueprint"></div>
                 </div>
             </div>
+
+            <div class="workspace-sidebar properties-table">
+                <div class="properties-table--header">Table Properties</div>
+
+                <div class="form-group row showcase_row_area">
+                    <div class="col-md-8">
+                        <label for="table-name">Table name</label>
+                    </div>
+                    <div class="col-md-4 showcase_content_area">
+                        <input type="text" class="form-control form-control-std" id="table-name"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="table-type">Table Type</label>
+                    <select id=table-type class="custom-select">
+                        <option selected="">Regular</option>
+                        <option value="1">Regular 1</option>
+                        <option value="2">Regular 2</option>
+                        <option value="3">Regular 3</option>
+                    </select>
+                </div>
+
+                <div class="form-group row showcase_row_area">
+                    <div class="col-md-8">
+                        <label for="table-min-party">Min party</label>
+                    </div>
+                    <div class="col-md-4 showcase_content_area">
+                        <input type="number" class="form-control form-control-std" id="table-min-party" min="1" value="1"/>
+                    </div>
+                </div>
+
+                <div class="form-group row showcase_row_area">
+                    <div class="col-md-8">
+                        <label for="table-max-party">Max party</label>
+                    </div>
+                    <div class="col-md-4 showcase_content_area">
+                        <input type="number" class="form-control form-control-std" id="table-max-party" min="1" value="1"/>
+                    </div>
+                </div>
+
+                <div>
+                    <button type="button" class="btn btn-std btn-block">Duplicate</button>
+                    <button type="button" class="btn btn-std btn-block">Delete</button>
+                </div>
+            </div>
         </div>
         <!-- content viewport ends -->
         <!-- partial:partials/_footer.html -->
-        <footer class="footer">
+        <footer class="footer footer-std">
             <div class="row">
                 <div class="col-sm-6 text-center text-sm-right order-sm-1">
                     <ul class="text-gray">

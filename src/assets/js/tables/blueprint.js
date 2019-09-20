@@ -12,7 +12,8 @@ $(document).ready(function () {
       $(this).find('object').css('pointer-events', 'none');
     })
     .click(function () {
-      const $shapeContainer = $('<div class="shape--inserted"></div>');
+      const uid = +new Date();
+      const $shapeContainer = $('<div data-id="' + uid + '" class="shape--inserted"></div>');
       const $shape = $(this).find('object').clone()
         .attr('width', startWidth)
         .attr('height', startWidth);
@@ -29,6 +30,10 @@ $(document).ready(function () {
           snapStep: 22.5,
           wheel: false
         });
+
+      ReactiveShapeCollection
+        .deactivateAll()
+        .add(uid, new ReactiveShape($shape.get()[0]).activate());
     });
 
   // Rotation handing

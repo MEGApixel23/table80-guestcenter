@@ -1,5 +1,12 @@
 @import "./variables";
 
+.selection {
+    border: 1px solid rgb(221, 220, 222);
+    position: absolute;
+    z-index: 1000;
+    background-color: rgba(230, 229, 230, 0.4);
+}
+
 .floor--wrapper {
     margin-top: 60px;
     background-color: $workspace--background-color;

@@ -576,6 +576,12 @@ footer {
 .footer-std {
   background-color: #fff; }
 
+.selection {
+  border: 1px solid #dddcde;
+  position: absolute;
+  z-index: 1000;
+  background-color: rgba(230, 229, 230, 0.4); }
+
 .floor--wrapper {
   margin-top: 60px;
   background-color: #f3f2f4; }

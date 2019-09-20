@@ -34,7 +34,8 @@
   width: 540px;
   padding: 20px;
   margin-top: 10px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  position: relative; }
   .blueprint--container .blueprint {
     border: 2px solid #f0eff0;
     background-image: linear-gradient(#f0eff0 2px, transparent 2px), linear-gradient(90deg, #f0eff0 2px, transparent 2px), linear-gradient(#f0eff0 1px, transparent 1px), linear-gradient(90deg, #f0eff0 1px, transparent 1px);
@@ -113,5 +114,17 @@
   .elements--container .elements-row:last-of-type .dinner-table--wrapper {
     border-right: 1px solid #d6d6d6;
     border-top: none; }
+
+.shape--inserted {
+  position: absolute;
+  top: 20px;
+  left: 20px; }
+
+.ui-rotatable-handle {
+  top: -60px;
+  width: 50px;
+  height: 50px;
+  background: url("/admin/pages/shapes/basic/handle.svg");
+  background-size: 50px 50px; }
 
 /*# sourceMappingURL=main.css.map */

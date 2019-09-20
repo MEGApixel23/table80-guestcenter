@@ -2,10 +2,12 @@ window.attachSelectable = function (element) {
   const selectable = new Selectable();
 
   element.onmousedown = function (e) {
-    e.preventDefault();
-    selectable.show()
-      .setStart(e.clientX - 1, e.clientY - 1)
-      .calculate();
+    if (e.target === element) {
+      e.preventDefault();
+      selectable.show()
+        .setStart(e.clientX - 1, e.clientY - 1)
+        .calculate();
+    }
   };
 
   element.onmousemove = selectable.getSelectionNode().onmousemove = function (e) {

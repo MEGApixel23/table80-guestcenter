@@ -1,8 +1,12 @@
 @import "./variables";
 
 .btn-std {
-    background-color: $no-accent-color;
+    background-color: rgb(138, 138, 145);
     color: $blueprint--background--color;
+
+    &:focus, &:active, &:hover {
+        color: #d0d0d0;
+    }
 }
 
 .form-control-std {

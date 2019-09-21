@@ -1,6 +1,8 @@
 .btn-std {
-  background-color: #b8b8bd;
+  background-color: #8a8a91;
   color: #fff; }
+  .btn-std:focus, .btn-std:active, .btn-std:hover {
+    color: #d0d0d0; }
 
 .form-control-std {
   padding: 2px 7px; }

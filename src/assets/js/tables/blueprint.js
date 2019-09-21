@@ -1,15 +1,30 @@
 $(document).ready(function () {
   const $blueprint = $('#blueprint');
 
+  const openPropertiesMenu = function (s) {
+    $('#table-name').val(s.name);
+    $('#table-type').val(s.meta.type);
+    $('#table-min-party').val(s.meta.minParty);
+    $('#table-max-party').val(s.meta.maxParty);
+    $('#properties-table').removeAttr('hidden');
+  };
+
+  const closePropertiesMenu = function () {
+    $('#properties-table').attr('hidden', 'hidden');
+  };
+
   // Select handing
   (function () {
     attachSelectableArea($blueprint.get()[0]);
 
     $('body').on('mousedown', '.shape--inserted', function (e) {
       const uid = $(this).data('uid');
+      const s = ReactiveShapeCollection.get(uid);
 
-      ReactiveShapeCollection.deactivateAll()
-        .activate(uid);
+      ReactiveShapeCollection.deactivateAll();
+
+      s.activate();
+      openPropertiesMenu(s);
     });
   })();
 
@@ -44,9 +59,9 @@ $(document).ready(function () {
         });
 
       const reactiveShape = new ReactiveShape($shape.get()[0])
-        .activate()
-        .setName('test2');
+        .activate();
 
+      openPropertiesMenu(reactiveShape);
       ReactiveShapeCollection
         .deactivateAll()
         .add(uid, reactiveShape);
@@ -69,6 +84,50 @@ $(document).ready(function () {
         $('.shape--inserted').draggable('enable');
         isInRotation = false;
       }
+    });
+  })();
+
+  // Edit
+  (function () {
+    $('#table-name').keyup(function () {
+      const name = $(this).val();
+
+      ReactiveShapeCollection.getActive()
+        .map(function (s) {
+          s.setName(name);
+        });
+    });
+
+    $('#table-type').change(function () {
+      const type = $(this).val();
+
+      ReactiveShapeCollection.getActive()
+        .map(function (s) {
+          s.meta.type = type;
+        });
+    });
+
+    $('#table-min-party').keyup(function () {
+      const minParty = $(this).val();
+
+      ReactiveShapeCollection.getActive()
+        .map(function (s) {
+          s.meta.minParty = minParty;
+        });
+    });
+
+    $('#table-max-party').change(function () {
+      const maxParty = $(this).val();
+
+      ReactiveShapeCollection.getActive()
+        .map(function (s) {
+          s.meta.maxParty = maxParty;
+        });
+    });
+
+    $('#delete-table').click(function () {
+      ReactiveShapeCollection.deleteActive();
+      closePropertiesMenu();
     });
   })();
 });

@@ -3,11 +3,17 @@ function ReactiveShape (svg) {
   const defaultWidth = 51;
   const handleWidth = 50;
 
+  this.uid = null;
   this.width = 0;
   this.height = 0;
   this.isActive = false;
   this.name = '';
   this.angle = 0;
+  this.meta = {
+    type: 0,
+    minParty: 1,
+    maxParty: 1,
+  };
 
   this.loaded = new Promise(function (res) {
     svg.onload = function () {
@@ -95,35 +101,13 @@ function ReactiveShape (svg) {
 
   this.getTextNode = function () {
     return svg.parentNode.getElementsByClassName('shape-text')[0];
-  }
+  };
+
+  this.delete = function () {
+    const parent = svg.parentNode;
+
+    parent.parentNode.removeChild(parent);
+  };
 
   this.resize(svg.getAttribute('data-initial-w'), svg.getAttribute('data-initial-h'));
 }
-
-const collection = {};
-
-function ReactiveShapeCollection () {}
-
-ReactiveShapeCollection.add = function (uid, reactiveShape) {
-  collection[uid] = reactiveShape;
-
-  return this;
-};
-
-ReactiveShapeCollection.get = function (uid) {
-  return collection[uid];
-};
-
-ReactiveShapeCollection.deactivateAll = function () {
-  Object.keys(collection).map(function (uid) {
-    ReactiveShapeCollection.get(uid).deactivate();
-  });
-
-  return this;
-}
-
-ReactiveShapeCollection.activate = function (uid) {
-  ReactiveShapeCollection.get(uid).activate();
-
-  return this;
-};

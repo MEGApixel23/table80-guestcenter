@@ -373,7 +373,7 @@
                 </div>
             </div>
 
-            <div class="workspace-sidebar properties-table">
+            <div id="properties-table" class="workspace-sidebar properties-table" hidden>
                 <div class="properties-table--header">Table Properties</div>
 
                 <div class="form-group row showcase_row_area">
@@ -381,14 +381,14 @@
                         <label for="table-name">Table name</label>
                     </div>
                     <div class="col-md-4 showcase_content_area">
-                        <input type="text" class="form-control form-control-std" id="table-name"/>
+                        <input id="table-name" type="text" class="form-control form-control-std"/>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="table-type">Table Type</label>
-                    <select id=table-type class="custom-select">
-                        <option selected="">Regular</option>
+                    <select id="table-type" class="custom-select">
+                        <option selected="" value="0">Regular</option>
                         <option value="1">Regular 1</option>
                         <option value="2">Regular 2</option>
                         <option value="3">Regular 3</option>
@@ -400,7 +400,7 @@
                         <label for="table-min-party">Min party</label>
                     </div>
                     <div class="col-md-4 showcase_content_area">
-                        <input type="number" class="form-control form-control-std" id="table-min-party" min="1" value="1"/>
+                        <input id="table-min-party" type="number" class="form-control form-control-std" min="1" max="10" value="1"/>
                     </div>
                 </div>
 
@@ -409,13 +409,13 @@
                         <label for="table-max-party">Max party</label>
                     </div>
                     <div class="col-md-4 showcase_content_area">
-                        <input type="number" class="form-control form-control-std" id="table-max-party" min="1" value="1"/>
+                        <input id="table-max-party" type="number" class="form-control form-control-std" min="1" max="10" value="1"/>
                     </div>
                 </div>
 
                 <div>
                     <button type="button" class="btn btn-std btn-block">Duplicate</button>
-                    <button type="button" class="btn btn-std btn-block">Delete</button>
+                    <button id="delete-table" type="button" class="btn btn-std btn-block">Delete</button>
                 </div>
             </div>
         </div>
@@ -447,7 +447,8 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
 <script src="../../assets/js/tables/plugins/jquery.ui.rotatable.min.js"></script>
 <script src="../../assets/js/tables/plugins/selectable.js"></script>
-<script src="../../assets/js/tables/plugins/shapes.js"></script>
+<script src="../../assets/js/tables/plugins/shapes/ReactiveShape.js"></script>
+<script src="../../assets/js/tables/plugins/shapes/ReactiveShapeCollection.js"></script>
 <script src="../../assets/js/tables/blueprint.js"></script>
 <!-- endinject -->
 <!-- Vendor Js For This Page Ends-->

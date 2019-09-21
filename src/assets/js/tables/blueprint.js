@@ -1,22 +1,27 @@
 $(document).ready(function () {
-  const startWidth = 51;
   const $blueprint = $('#blueprint');
 
   // Select handing
-  attachSelectable($blueprint.get()[0]);
+  (function () {
+    attachSelectableArea($blueprint.get()[0]);
+
+    $('body').on('mousedown', '.shape--inserted', function (e) {
+      const uid = $(this).data('uid');
+
+      ReactiveShapeCollection.deactivateAll()
+        .activate(uid);
+    });
+  })();
 
   // Drag handing
-  $('[data-insert-shape]')
-    .each(function () {
-      // Allows to catch click events on SVG objects
-      $(this).find('object').css('pointer-events', 'none');
-    })
-    .click(function () {
-      const uid = +new Date();
-      const $shapeContainer = $('<div data-id="' + uid + '" class="shape--inserted"></div>');
-      const $shape = $(this).find('object').clone()
-        .attr('width', startWidth)
-        .attr('height', startWidth);
+  (function () {
+    // Allows to catch click events on SVG <object>
+    $('[data-insert-shape] object').css('pointer-events', 'none');
+
+    $('[data-insert-shape]').click(function () {
+      const uid = +new Date() + '' + Math.random();
+      const $shapeContainer = $('<div data-uid="' + uid + '" class="shape--inserted"></div>');
+      const $shape = $(this).find('object').clone();
 
       $blueprint.append($shapeContainer);
       $shapeContainer.append($shape)
@@ -35,6 +40,7 @@ $(document).ready(function () {
         .deactivateAll()
         .add(uid, new ReactiveShape($shape.get()[0]).activate());
     });
+  })();
 
   // Rotation handing
   (function () {
@@ -53,5 +59,5 @@ $(document).ready(function () {
         isInRotation = false;
       }
     });
-  })()
+  })();
 });

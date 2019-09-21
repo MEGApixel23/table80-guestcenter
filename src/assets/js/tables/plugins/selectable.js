@@ -1,27 +1,27 @@
-window.attachSelectable = function (element) {
-  const selectable = new Selectable();
+window.attachSelectableArea = function (element) {
+  const selectableArea = new SelectableArea();
 
   element.onmousedown = function (e) {
     if (e.target === element) {
       e.preventDefault();
-      selectable.show()
+      selectableArea.show()
         .setStart(e.clientX - 1, e.clientY - 1)
         .calculate();
     }
   };
 
-  element.onmousemove = selectable.getSelectionNode().onmousemove = function (e) {
-    if (selectable.isActive()) {
-      selectable.show()
+  element.onmousemove = selectableArea.getSelectionNode().onmousemove = function (e) {
+    if (selectableArea.isActive()) {
+      selectableArea.show()
         .setEnd(e.clientX - 1, e.clientY - 1)
         .calculate();
     }
   };
 
-  document.body.onmouseup = selectable.hide;
+  document.body.onmouseup = selectableArea.hide;
 }
 
-function Selectable () {
+function SelectableArea () {
   let x1 = null;
   let y1 = null;
   let x2 = null;

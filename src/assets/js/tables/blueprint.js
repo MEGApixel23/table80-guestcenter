@@ -1,4 +1,7 @@
 $(document).ready(function () {
+  let isInDraggingMode = false;
+  let isInRotationMode = false;
+
   const $blueprint = $('#blueprint');
 
   const openPropertiesMenu = function (s) {
@@ -29,8 +32,27 @@ $(document).ready(function () {
         grid: [5, 5],
         cursor: 'grabbing',
         drag: function (e, d) {
+          isInDraggingMode = true;
+
+          const originalTop = reactiveShape.pos.top;
+          const originalLeft = reactiveShape.pos.left;
+
           reactiveShape.pos.top = d.position.top;
           reactiveShape.pos.left = d.position.left;
+
+          const deltaTop = reactiveShape.pos.top - originalTop;
+          const deltaLeft = reactiveShape.pos.left - originalLeft;
+
+          ReactiveShapeCollection.getActive()
+            .map(function (s) {
+              if (e.target === s.getParentNode()) {
+                return;
+              }
+
+              s.pos.top += deltaTop;
+              s.pos.left += deltaLeft;
+              s.move();
+            });
         }
       })
       .rotatable({
@@ -56,14 +78,18 @@ $(document).ready(function () {
       }
     });
 
-    $('body').on('mousedown', '.shape--inserted', function () {
-      const uid = $(this).data('uid');
-      const s = ReactiveShapeCollection.get(uid);
+    $('body').on('mouseup', '.shape--inserted', function () {
+      if (isInDraggingMode) {
+        isInDraggingMode = false;
+      } else {
+        const uid = $(this).data('uid');
+        const s = ReactiveShapeCollection.get(uid);
 
-      ReactiveShapeCollection.deactivateAll();
+        ReactiveShapeCollection.deactivateAll();
 
-      s.activate();
-      openPropertiesMenu(s);
+        s.activate();
+        openPropertiesMenu(s);
+      }
     });
   })();
 
@@ -87,19 +113,18 @@ $(document).ready(function () {
 
   // Rotation handing
   (function () {
-    let isInRotation = false;
 
     $(document).on('mouseover', '.ui-rotatable-handle', function () {
-      if (!isInRotation) {
+      if (!isInRotationMode) {
         $(this).closest('.shape--inserted').draggable('disable');
-        isInRotation = true;
+        isInRotationMode = true;
       }
     });
 
     $(document).on('mouseup', function () {
-      if (isInRotation) {
+      if (isInRotationMode) {
         $('.shape--inserted').draggable('enable');
-        isInRotation = false;
+        isInRotationMode = false;
       }
     });
   })();
@@ -148,6 +173,8 @@ $(document).ready(function () {
     });
 
     $('#clone-table').click(function () {
+      const cloned = [];
+
       ReactiveShapeCollection.getActive().map(function (s) {
         const $clonedShape = $(s.getNode()).clone();
         const shape = $clonedShape.get()[0];
@@ -156,11 +183,16 @@ $(document).ready(function () {
         reactiveShape.angle = s.angle;
         reactiveShape.pos.top = s.pos.top + s.height;
         reactiveShape.pos.left = s.pos.left || 20;
-        console.log(s.height, s.pos.top);
 
         insertShape(reactiveShape);
-        ReactiveShapeCollection.deactivateAll().add(reactiveShape.uid, reactiveShape);
-        reactiveShape.activate().move();
+        ReactiveShapeCollection.add(reactiveShape.uid, reactiveShape);
+
+        cloned.push(reactiveShape);
+      });
+
+      ReactiveShapeCollection.deactivateAll();
+      cloned.map(function (s) {
+        s.activate().move();
       });
     });
   })();

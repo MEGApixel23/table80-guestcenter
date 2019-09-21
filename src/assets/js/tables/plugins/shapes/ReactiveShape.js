@@ -41,12 +41,20 @@ function ReactiveShape (svg) {
     return svg;
   };
 
-  this.getParentNodeJquery = function () {
+  this.getParentNode = function () {
     if (!this.parentNode) {
-      this.parentNode = $(svg.parentNode);
+      this.parentNode = svg.parentNode;
     }
 
     return this.parentNode;
+  };
+
+  this.getParentNodeJquery = function () {
+    if (!this.parentNodeJquery) {
+      this.parentNodeJquery = $(svg.parentNode);
+    }
+
+    return this.parentNodeJquery;
   };
 
   this.move = function () {

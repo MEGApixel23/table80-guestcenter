@@ -624,6 +624,14 @@ footer {
     width: 100%;
     height: 100%;
     vertical-align: top; }
+  .blueprint--container .ui-resizable-handle.ui-resizable-se {
+    bottom: 16px;
+    right: 16px;
+    background-color: #a3a2a3;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    cursor: se-resize; }
 
 .workspace-sidebar {
   display: inline-block;

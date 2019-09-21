@@ -196,4 +196,14 @@ $(document).ready(function () {
       });
     });
   })();
+
+  // Resize handling
+  (function () {
+    $('#blueprint-container').resizable({
+      handles: 'se',
+      grid: [20, 20],
+      minHeight: 140,
+      minWidth: 140
+    });
+  })();
 });

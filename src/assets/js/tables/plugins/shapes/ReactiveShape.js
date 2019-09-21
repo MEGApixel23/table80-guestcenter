@@ -15,6 +15,10 @@ function ReactiveShape (svg) {
     maxParty: 1,
   };
   this.isInitialized = false;
+  this.pos = {
+    top: 0,
+    left: 0
+  };
 
   this.loaded = new Promise(function (res) {
     svg.onload = function () {
@@ -35,6 +39,13 @@ function ReactiveShape (svg) {
 
   this.getNode = function () {
     return svg;
+  };
+
+  this.move = function () {
+    svg.parentNode.style.top = this.pos.top + 'px';
+    svg.parentNode.style.left = this.pos.left + 'px';
+
+    return this;
   };
 
   this.activate = function () {
@@ -84,10 +95,10 @@ function ReactiveShape (svg) {
   this.resize = function (w, h) {
     const handle = svg.parentNode.getElementsByClassName('ui-rotatable-handle')[0];
 
-    this.width = w || defaultWidth;
-    this.height = h || defaultWidth;
+    this.width = parseInt(w) || defaultWidth;
+    this.height = parseInt(h) || defaultWidth;
     svg.setAttribute('width', this.width);
-    svg.setAttribute('height', this.width);
+    svg.setAttribute('height', this.height);
     handle.style.left = (this.width - handleWidth) / 2 + 'px';
 
     return this;

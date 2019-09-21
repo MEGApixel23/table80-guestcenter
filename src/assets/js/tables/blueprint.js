@@ -27,11 +27,16 @@ $(document).ready(function () {
       .draggable({
         containment: 'parent',
         grid: [5, 5],
-        cursor: 'grabbing'
+        cursor: 'grabbing',
+        drag: function (e, d) {
+          reactiveShape.pos.top = d.position.top;
+          reactiveShape.pos.left = d.position.left;
+        }
       })
       .rotatable({
         snap: true,
         snapStep: 22.5,
+        angle: reactiveShape.angle,
         wheel: false,
         rotate: function (e, d) {
           reactiveShape.rotated(d.angle.current);
@@ -140,9 +145,14 @@ $(document).ready(function () {
         const shape = $clonedShape.get()[0];
         const reactiveShape = new ReactiveShape(shape);
 
+        reactiveShape.angle = s.angle;
+        reactiveShape.pos.top = s.pos.top + s.height;
+        reactiveShape.pos.left = s.pos.left || 20;
+        console.log(s.height, s.pos.top);
+
         insertShape(reactiveShape);
         ReactiveShapeCollection.deactivateAll().add(reactiveShape.uid, reactiveShape);
-        reactiveShape.activate();
+        reactiveShape.activate().move();
       });
     });
   })();

@@ -1,4 +1,4 @@
-window.attachSelectableArea = function (element) {
+window.attachSelectableArea = function (element, options) {
   const selectableArea = new SelectableArea();
 
   element.onmousedown = function (e) {
@@ -12,9 +12,11 @@ window.attachSelectableArea = function (element) {
 
   element.onmousemove = selectableArea.getSelectionNode().onmousemove = function (e) {
     if (selectableArea.isActive()) {
-      selectableArea.show()
+      const coords = selectableArea.show()
         .setEnd(e.clientX - 1, e.clientY - 1)
         .calculate();
+
+      options.onMoving && options.onMoving(coords, selectableArea.getSelectionNodeJquery());
     }
   };
 
@@ -27,10 +29,10 @@ function SelectableArea () {
   let x2 = null;
   let y2 = null;
 
-  const node = $('<div></div>')
+  const $node = $('<div></div>')
     .addClass('selection')
-    .attr('hidden', 1)
-    .get()[0];
+    .attr('hidden', 1);
+  const node = $node.get()[0];
 
   this.construct = function () {
     document.body.appendChild(node);
@@ -68,7 +70,12 @@ function SelectableArea () {
     node.style.width = x4 - x3 + 'px';
     node.style.height = y4 - y3 + 'px';
 
-    return this;
+    return {
+      left: x3,
+      top: y3,
+      width: x4 - x3,
+      height: y4 - y3
+    };
   }
 
   this.hide = function () {
@@ -97,6 +104,10 @@ function SelectableArea () {
 
   this.getSelectionNode = function () {
     return node;
+  };
+
+  this.getSelectionNodeJquery = function () {
+    return $node;
   };
 
   this.construct();

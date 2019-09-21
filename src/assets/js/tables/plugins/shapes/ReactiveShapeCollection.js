@@ -52,3 +52,10 @@ ReactiveShapeCollection.deleteActive = function () {
     delete ReactiveShapeCollection.collection[s.uid];
   });
 };
+
+ReactiveShapeCollection.iterate = function (cb) {
+  Object.keys(ReactiveShapeCollection.collection)
+    .map(function (uid) {
+      cb(ReactiveShapeCollection.get(uid));
+    });
+};

@@ -12,7 +12,7 @@ function ReactiveShape (svg) {
   this.meta = {
     type: 0,
     minParty: 1,
-    maxParty: 1,
+    maxParty: 1
   };
   this.isInitialized = false;
   this.pos = {
@@ -23,7 +23,7 @@ function ReactiveShape (svg) {
   this.loaded = new Promise(function (res) {
     svg.onload = function () {
       res();
-    }
+    };
   });
 
   this.init = function () {
@@ -41,6 +41,14 @@ function ReactiveShape (svg) {
     return svg;
   };
 
+  this.getParentNodeJquery = function () {
+    if (!this.parentNode) {
+      this.parentNode = $(svg.parentNode);
+    }
+
+    return this.parentNode;
+  };
+
   this.move = function () {
     svg.parentNode.style.top = this.pos.top + 'px';
     svg.parentNode.style.left = this.pos.left + 'px';
@@ -51,6 +59,10 @@ function ReactiveShape (svg) {
   this.activate = function () {
     if (!this.isInitialized) {
       this.init();
+    }
+
+    if (this.isActive) {
+      return this;
     }
 
     svg.parentNode.classList.add('active');
@@ -69,6 +81,10 @@ function ReactiveShape (svg) {
   };
 
   this.deactivate = function () {
+    if (!this.isActive) {
+      return this;
+    }
+
     svg.parentNode.classList.remove('active');
     this.isActive = false;
 

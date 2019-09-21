@@ -46,9 +46,17 @@ $(document).ready(function () {
 
   // Select handing
   (function () {
-    attachSelectableArea($blueprint.get()[0]);
+    attachSelectableArea($blueprint.get()[0], {
+      onMoving: function (d, $el) {
+        ReactiveShapeCollection.iterate(function (s) {
+          if (areOverlapping($el, s.getParentNodeJquery())) {
+            s.activate();
+          }
+        });
+      }
+    });
 
-    $('body').on('mousedown', '.shape--inserted', function (e) {
+    $('body').on('mousedown', '.shape--inserted', function () {
       const uid = $(this).data('uid');
       const s = ReactiveShapeCollection.get(uid);
 

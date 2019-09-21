@@ -14,6 +14,7 @@ function ReactiveShape (svg) {
     minParty: 1,
     maxParty: 1,
   };
+  this.isInitialized = false;
 
   this.loaded = new Promise(function (res) {
     svg.onload = function () {
@@ -21,7 +22,26 @@ function ReactiveShape (svg) {
     }
   });
 
+  this.init = function () {
+    this.resize(svg.getAttribute('data-initial-w'), svg.getAttribute('data-initial-h'));
+    this.isInitialized = true;
+
+    return this;
+  };
+
+  this.generateUid = function () {
+    return +new Date() + '' + Math.random();
+  };
+
+  this.getNode = function () {
+    return svg;
+  };
+
   this.activate = function () {
+    if (!this.isInitialized) {
+      this.init();
+    }
+
     svg.parentNode.classList.add('active');
     this.isActive = true;
 
@@ -108,6 +128,4 @@ function ReactiveShape (svg) {
 
     parent.parentNode.removeChild(parent);
   };
-
-  this.resize(svg.getAttribute('data-initial-w'), svg.getAttribute('data-initial-h'));
 }

@@ -13,6 +13,32 @@ $(document).ready(function () {
     $('#properties-table').attr('hidden', 'hidden');
   };
 
+  const insertShape = function (reactiveShape) {
+    const uid = reactiveShape.generateUid();
+    const $shapeContainer = $(
+      '<div data-uid="' + uid + '" class="shape--inserted">' +
+        '<div class="shape-text"></div>' +
+      '</div>'
+    );
+
+    reactiveShape.uid = uid;
+    $blueprint.append($shapeContainer);
+    $shapeContainer.append(reactiveShape.getNode())
+      .draggable({
+        containment: 'parent',
+        grid: [5, 5],
+        cursor: 'grabbing'
+      })
+      .rotatable({
+        snap: true,
+        snapStep: 22.5,
+        wheel: false,
+        rotate: function (e, d) {
+          reactiveShape.rotated(d.angle.current);
+        }
+      });
+  };
+
   // Select handing
   (function () {
     attachSelectableArea($blueprint.get()[0]);
@@ -34,37 +60,15 @@ $(document).ready(function () {
     $('[data-insert-shape] object').css('pointer-events', 'none');
 
     $('[data-insert-shape]').click(function () {
-      const uid = +new Date() + '' + Math.random();
-      const $shapeContainer = $(
-        '<div data-uid="' + uid + '" class="shape--inserted">' +
-          '<div class="shape-text"></div>' +
-        '</div>'
-      );
       const $shape = $(this).find('object').clone();
+      const reactiveShape = new ReactiveShape($shape.get()[0]);
 
-      $blueprint.append($shapeContainer);
-      $shapeContainer.append($shape)
-        .draggable({
-          containment: 'parent',
-          grid: [5, 5],
-          cursor: 'grabbing'
-        })
-        .rotatable({
-          snap: true,
-          snapStep: 22.5,
-          wheel: false,
-          rotate: function (e, d) {
-            reactiveShape.rotated(d.angle.current);
-          }
-        });
-
-      const reactiveShape = new ReactiveShape($shape.get()[0])
-        .activate();
-
+      insertShape(reactiveShape);
+      reactiveShape.activate();
       openPropertiesMenu(reactiveShape);
       ReactiveShapeCollection
         .deactivateAll()
-        .add(uid, reactiveShape);
+        .add(reactiveShape.uid, reactiveShape);
     });
   })();
 
@@ -128,6 +132,18 @@ $(document).ready(function () {
     $('#delete-table').click(function () {
       ReactiveShapeCollection.deleteActive();
       closePropertiesMenu();
+    });
+
+    $('#clone-table').click(function () {
+      ReactiveShapeCollection.getActive().map(function (s) {
+        const $clonedShape = $(s.getNode()).clone();
+        const shape = $clonedShape.get()[0];
+        const reactiveShape = new ReactiveShape(shape);
+
+        insertShape(reactiveShape);
+        ReactiveShapeCollection.deactivateAll().add(reactiveShape.uid, reactiveShape);
+        reactiveShape.activate();
+      });
     });
   })();
 });

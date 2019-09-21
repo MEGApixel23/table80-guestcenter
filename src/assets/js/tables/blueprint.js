@@ -28,7 +28,7 @@ $(document).ready(function () {
     $blueprint.append($shapeContainer);
     $shapeContainer.append(reactiveShape.getNode())
       .draggable({
-        containment: 'parent',
+        containment: '.workspace',
         grid: [5, 5],
         cursor: 'grabbing',
         drag: function (e, d) {

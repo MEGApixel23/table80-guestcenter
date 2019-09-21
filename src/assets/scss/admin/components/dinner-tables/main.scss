@@ -186,6 +186,11 @@
     left: 20px;
     line-height: 0;
     z-index: 999;
+    cursor: pointer;
+
+    &.ui-draggable-dragging {
+        cursor: grabbing;
+    }
 
     .shape-text {
         position: absolute;

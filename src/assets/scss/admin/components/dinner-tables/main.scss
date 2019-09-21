@@ -175,6 +175,13 @@
     top: 20px;
     left: 20px;
     line-height: 0;
+
+    .shape-text {
+        position: absolute;
+        color: white;
+        font-weight: bold;
+        text-align: center;
+    }
 }
 
 .ui-rotatable-handle {

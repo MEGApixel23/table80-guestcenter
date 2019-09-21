@@ -3,6 +3,12 @@ function ReactiveShape (svg) {
   const defaultWidth = 51;
   const handleWidth = 50;
 
+  this.width = 0;
+  this.height = 0;
+  this.isActive = false;
+  this.name = '';
+  this.angle = 0;
+
   this.loaded = new Promise(function (res) {
     svg.onload = function () {
       res();
@@ -11,6 +17,7 @@ function ReactiveShape (svg) {
 
   this.activate = function () {
     svg.parentNode.classList.add('active');
+    this.isActive = true;
 
     this.loaded.then(function () {
       this.forEachImage(function (image) {
@@ -26,6 +33,7 @@ function ReactiveShape (svg) {
 
   this.deactivate = function () {
     svg.parentNode.classList.remove('active');
+    this.isActive = false;
 
     this.loaded.then(function () {
       this.forEachImage(function (image) {
@@ -48,16 +56,46 @@ function ReactiveShape (svg) {
   };
 
   this.resize = function (w, h) {
-    const width = w || defaultWidth;
-    const height = h || defaultWidth;
     const handle = svg.parentNode.getElementsByClassName('ui-rotatable-handle')[0];
 
-    svg.setAttribute('width', width);
-    svg.setAttribute('height', height);
-    handle.style.left = (width - handleWidth) / 2 + 'px';
+    this.width = w || defaultWidth;
+    this.height = h || defaultWidth;
+    svg.setAttribute('width', this.width);
+    svg.setAttribute('height', this.width);
+    handle.style.left = (this.width - handleWidth) / 2 + 'px';
 
     return this;
   };
+
+  this.setName = function (name) {
+    const el = this.getTextNode();
+
+    this.name = name;
+    el.innerText = name;
+    this.positionName();
+
+    return this;
+  };
+
+  this.positionName = function () {
+    const el = this.getTextNode();
+
+    el.style.width = this.width + 'px';
+    el.style.top = this.height / 2 + 'px';
+  };
+
+  this.rotated = function (angle) {
+    const el = this.getTextNode();
+
+    this.angle = angle;
+    el.style.transform = 'rotate(-' + angle + 'deg)';
+
+    return this;
+  };
+
+  this.getTextNode = function () {
+    return svg.parentNode.getElementsByClassName('shape-text')[0];
+  }
 
   this.resize(svg.getAttribute('data-initial-w'), svg.getAttribute('data-initial-h'));
 }

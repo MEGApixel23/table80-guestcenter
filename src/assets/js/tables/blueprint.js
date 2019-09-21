@@ -20,7 +20,11 @@ $(document).ready(function () {
 
     $('[data-insert-shape]').click(function () {
       const uid = +new Date() + '' + Math.random();
-      const $shapeContainer = $('<div data-uid="' + uid + '" class="shape--inserted"></div>');
+      const $shapeContainer = $(
+        '<div data-uid="' + uid + '" class="shape--inserted">' +
+          '<div class="shape-text"></div>' +
+        '</div>'
+      );
       const $shape = $(this).find('object').clone();
 
       $blueprint.append($shapeContainer);
@@ -33,12 +37,19 @@ $(document).ready(function () {
         .rotatable({
           snap: true,
           snapStep: 22.5,
-          wheel: false
+          wheel: false,
+          rotate: function (e, d) {
+            reactiveShape.rotated(d.angle.current);
+          }
         });
+
+      const reactiveShape = new ReactiveShape($shape.get()[0])
+        .activate()
+        .setName('test2');
 
       ReactiveShapeCollection
         .deactivateAll()
-        .add(uid, new ReactiveShape($shape.get()[0]).activate());
+        .add(uid, reactiveShape);
     });
   })();
 

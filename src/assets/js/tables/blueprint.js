@@ -3,6 +3,10 @@ $(document).ready(function () {
   let isInRotationMode = false;
 
   const $blueprint = $('#blueprint');
+  const $blueprintContainer = $('#blueprint-container');
+  const $body = $('body');
+  const shapeClass = 'shape--inserted';
+  const shapeSelector = '.shape--inserted';
 
   const openPropertiesMenu = function (s) {
     $('#table-name').val(s.name);
@@ -19,7 +23,7 @@ $(document).ready(function () {
   const insertShape = function (reactiveShape) {
     const uid = reactiveShape.generateUid();
     const $shapeContainer = $(
-      '<div data-uid="' + uid + '" class="shape--inserted">' +
+      '<div data-uid="' + uid + '" class="' + shapeClass + '">' +
         '<div class="shape-text"></div>' +
       '</div>'
     );
@@ -78,7 +82,7 @@ $(document).ready(function () {
       }
     });
 
-    $('body').on('mouseup', '.shape--inserted', function () {
+    $body.on('mouseup', shapeSelector, function () {
       if (isInDraggingMode) {
         isInDraggingMode = false;
       } else {
@@ -89,6 +93,15 @@ $(document).ready(function () {
 
         s.activate();
         openPropertiesMenu(s);
+      }
+    });
+
+    // If clicked outside of shape and inside a grid deselects all active shapes
+    $blueprintContainer.on('mousedown', function (e) {
+      const $el = $(e.target);
+
+      if ($el.hasClass(shapeClass) === false && $el.closest(shapeSelector).length === 0) {
+        ReactiveShapeCollection.deactivateAll();
       }
     });
   })();
@@ -116,14 +129,14 @@ $(document).ready(function () {
 
     $(document).on('mouseover', '.ui-rotatable-handle', function () {
       if (!isInRotationMode) {
-        $(this).closest('.shape--inserted').draggable('disable');
+        $(this).closest(shapeSelector).draggable('disable');
         isInRotationMode = true;
       }
     });
 
     $(document).on('mouseup', function () {
       if (isInRotationMode) {
-        $('.shape--inserted').draggable('enable');
+        $(shapeSelector).draggable('enable');
         isInRotationMode = false;
       }
     });
@@ -199,7 +212,7 @@ $(document).ready(function () {
 
   // Resize handling
   (function () {
-    $('#blueprint-container').resizable({
+    $blueprintContainer.resizable({
       handles: 'se',
       grid: [20, 20],
       minHeight: 140,

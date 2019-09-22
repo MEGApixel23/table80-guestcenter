@@ -74,6 +74,18 @@ $(document).ready(function () {
       });
   };
 
+  // Initial scaling of grid
+  (function () {
+    const padding = 2;
+    const gridStep = 20;
+    const $container = $('.floor--wrapper');
+    const width = $('.operational-space').width();
+    const height = $container.height() - $container.offset().top;
+
+    $blueprintContainer.width(width - width % gridStep + padding)
+      .height(height - height % gridStep + padding);
+  })();
+
   // Select handing
   (function () {
     attachSelectableArea($blueprint.get()[0], {

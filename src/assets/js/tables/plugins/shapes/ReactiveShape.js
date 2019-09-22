@@ -163,4 +163,11 @@ function ReactiveShape (svg) {
 
     parent.parentNode.removeChild(parent);
   };
+
+  this.setPos = function (top, left) {
+    this.pos.top = top;
+    this.pos.left = left;
+
+    return this;
+  }
 }

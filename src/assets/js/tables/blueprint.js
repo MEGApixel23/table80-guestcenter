@@ -35,32 +35,9 @@ $(document).ready(function () {
         containment: 'parent',
         grid: [5, 5],
         cursor: 'grabbing',
-        drag: function (e, d) {
+        drag: function (event, ui) {
           isInDraggingMode = true;
-
-          if (!reactiveShape.isActive) {
-            reactiveShape.activate();
-          }
-
-          const originalTop = reactiveShape.pos.top;
-          const originalLeft = reactiveShape.pos.left;
-
-          reactiveShape.pos.top = d.position.top;
-          reactiveShape.pos.left = d.position.left;
-
-          const deltaTop = reactiveShape.pos.top - originalTop;
-          const deltaLeft = reactiveShape.pos.left - originalLeft;
-
-          ReactiveShapeCollection.getActive()
-            .map(function (s) {
-              if (e.target === s.getParentNode()) {
-                return;
-              }
-
-              s.pos.top += deltaTop;
-              s.pos.left += deltaLeft;
-              s.move();
-            });
+          calculateDraggingPosition(reactiveShape, event, ui);
         }
       })
       .rotatable({
@@ -132,7 +109,10 @@ $(document).ready(function () {
       const reactiveShape = new ReactiveShape($shape.get()[0]);
 
       insertShape(reactiveShape);
-      reactiveShape.activate();
+      reactiveShape
+        .setPos(25, 25)
+        .move()
+        .activate();
       openPropertiesMenu(reactiveShape);
       ReactiveShapeCollection
         .deactivateAll()
@@ -142,7 +122,6 @@ $(document).ready(function () {
 
   // Rotation handing
   (function () {
-
     $(document).on('mouseover', '.ui-rotatable-handle', function () {
       if (!isInRotationMode) {
         $(this).closest(shapeSelector).draggable('disable');

@@ -20,3 +20,55 @@ const areOverlapping = function ($div1, $div2) {
 
   return !not_colliding;
 };
+
+const calculateDraggingPosition = function (reactiveShape, e, ui) {
+  let isOutsideBoundaries = false;
+  const shapesToMove = [];
+  const minLeft = 25;
+  const minTop = 25;
+
+  if (!reactiveShape.isActive) {
+    reactiveShape.activate();
+  }
+
+  const originalTop = reactiveShape.pos.top;
+  const originalLeft = reactiveShape.pos.left;
+  const deltaTop = ui.position.top - originalTop;
+  const deltaLeft = ui.position.left - originalLeft;
+  const activeReactiveShapes = ReactiveShapeCollection.getActive();
+
+  for (let i = 0; i < activeReactiveShapes.length; i++) {
+    const reactiveShape = activeReactiveShapes[i];
+
+    if (e.target === reactiveShape.getParentNode()) {
+      continue;
+    }
+
+    const newTop = reactiveShape.pos.top + deltaTop;
+    const newLeft = reactiveShape.pos.left + deltaLeft;
+
+    if (newTop < minTop || newLeft < minLeft) {
+      isOutsideBoundaries = true;
+      break;
+    }
+
+    shapesToMove.push([reactiveShape, newTop, newLeft]);
+  }
+
+  // Reverts a position of dragged node to original if other shapes are out of boundaries.
+  if (isOutsideBoundaries) {
+    ui.position.top = reactiveShape.pos.top;
+    ui.position.left = reactiveShape.pos.left;
+
+    return;
+  }
+
+  reactiveShape.setPos(ui.position.top, ui.position.left);
+  shapesToMove.map(function (item) {
+    const reactiveShape = item[0];
+    const newTop = item[1];
+    const newLeft = item[2];
+
+    reactiveShape.setPos(newTop, newLeft).move();
+  });
+};

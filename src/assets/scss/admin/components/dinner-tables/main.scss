@@ -204,11 +204,11 @@
     }
 
     .ui-rotatable-handle {
-        top: -60px;
-        width: 50px;
-        height: 50px;
+        top: -40px;
+        width: $rotate-handle--width;
+        height: $rotate-handle--width;
         background: url('./../../../admin/pages/shapes/basic/handle.svg');
-        background-size: 50px 50px;
+        background-size: $rotate-handle--width $rotate-handle--width;
         visibility: hidden;
     }
 

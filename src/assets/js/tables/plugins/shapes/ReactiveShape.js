@@ -1,7 +1,6 @@
 function ReactiveShape (svg) {
   const linkAttr = 'xlink:href';
   const defaultWidth = 51;
-  const handleWidth = 50;
 
   this.uid = null;
   this.width = 0;
@@ -118,6 +117,7 @@ function ReactiveShape (svg) {
 
   this.resize = function (w, h) {
     const handle = svg.parentNode.getElementsByClassName('ui-rotatable-handle')[0];
+    const handleWidth = handle.offsetWidth;
 
     this.width = parseInt(w) || defaultWidth;
     this.height = parseInt(h) || defaultWidth;

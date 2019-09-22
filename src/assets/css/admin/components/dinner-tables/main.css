@@ -141,11 +141,11 @@
   .shape--inserted.active {
     z-index: 1000; }
   .shape--inserted .ui-rotatable-handle {
-    top: -60px;
-    width: 50px;
-    height: 50px;
+    top: -40px;
+    width: 32px;
+    height: 32px;
     background: url("./../../../admin/pages/shapes/basic/handle.svg");
-    background-size: 50px 50px;
+    background-size: 32px 32px;
     visibility: hidden; }
   .shape--inserted.active .ui-rotatable-handle {
     visibility: visible; }

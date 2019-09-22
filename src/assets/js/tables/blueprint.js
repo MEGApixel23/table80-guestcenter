@@ -38,6 +38,10 @@ $(document).ready(function () {
         drag: function (e, d) {
           isInDraggingMode = true;
 
+          if (!reactiveShape.isActive) {
+            reactiveShape.activate();
+          }
+
           const originalTop = reactiveShape.pos.top;
           const originalLeft = reactiveShape.pos.left;
 

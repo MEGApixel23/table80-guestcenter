@@ -22,10 +22,14 @@ const areOverlapping = function ($div1, $div2) {
 };
 
 const calculateDraggingPosition = function (reactiveShape, e, ui) {
+  const $blueprintContainer = $('#blueprint-container');
   let isOutsideBoundaries = false;
   const shapesToMove = [];
   const minLeft = 25;
   const minTop = 25;
+  const gridStep = 20;
+  const maxRight = $blueprintContainer.width();
+  const maxBottom = $blueprintContainer.height();
 
   if (!reactiveShape.isActive) {
     reactiveShape.activate();
@@ -47,7 +51,10 @@ const calculateDraggingPosition = function (reactiveShape, e, ui) {
     const newTop = reactiveShape.pos.top + deltaTop;
     const newLeft = reactiveShape.pos.left + deltaLeft;
 
-    if (newTop < minTop || newLeft < minLeft) {
+    if (
+      newTop < minTop || newLeft < minLeft || (newTop + reactiveShape.height - gridStep) > maxBottom ||
+      (newLeft + reactiveShape.width - gridStep) > maxRight
+    ) {
       isOutsideBoundaries = true;
       break;
     }

@@ -182,25 +182,44 @@ $(document).ready(function () {
 
     $('#clone-table').click(function () {
       const cloned = [];
+      let direction = 'bottom';
 
       ReactiveShapeCollection.getActive().map(function (s) {
         const $clonedShape = $(s.getNode()).clone();
         const shape = $clonedShape.get()[0];
         const reactiveShape = new ReactiveShape(shape);
+        const top = s.pos.top;
+        const left = s.pos.left;
 
+        reactiveShape.height = s.height;
+        reactiveShape.width = s.width;
         reactiveShape.angle = s.angle;
-        reactiveShape.pos.top = s.pos.top + s.height;
-        reactiveShape.pos.left = s.pos.left || 20;
+
+        if (s.pos.top + s.height > $blueprintContainer.height()) {
+          direction = 'top';
+        }
 
         insertShape(reactiveShape);
         ReactiveShapeCollection.add(reactiveShape.uid, reactiveShape);
 
-        cloned.push(reactiveShape);
+        cloned.push([reactiveShape, top, left]);
       });
 
       ReactiveShapeCollection.deactivateAll();
-      cloned.map(function (s) {
-        s.activate().move();
+      cloned.map(function (item) {
+        const reactiveShape = item[0];
+        let top = item[1];
+        let left = item[2];
+
+        console.log(reactiveShape.height);
+
+        if (direction === 'bottom') {
+          top += reactiveShape.height;
+        } else if (direction === 'top') {
+          top -= reactiveShape.height;
+        }
+
+        reactiveShape.activate().setPos(top, left).move();
       });
     });
   })();

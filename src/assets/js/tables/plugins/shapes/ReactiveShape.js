@@ -169,5 +169,42 @@ function ReactiveShape (svg) {
     this.pos.left = left;
 
     return this;
-  }
+  };
+
+  this.export = function () {
+    return {
+      uid: this.uid,
+      w: this.width,
+      h: this.height,
+      name: this.name,
+      angle: this.angle,
+      meta: this.meta,
+      pos: this.pos,
+      svg: {
+        data: svg.getAttribute('data')
+      }
+    }
+  };
+}
+
+ReactiveShape.import = function (item) {
+  const $obj = $(
+    '<object data="' + item.svg.data + '" ' +
+      'type="image/svg+xml" ' +
+      'data-initial-w="' + item.w + '" ' +
+      'data-initial-h="' + item.h + '"' +
+    '></object>'
+  ).css('pointer-events', 'none');
+  const shape = $obj.get()[0];
+  const reactiveShape = new ReactiveShape(shape);
+
+  reactiveShape.uid = item.uid;
+  reactiveShape.pos = item.pos;
+  reactiveShape.height = item.h;
+  reactiveShape.width = item.w;
+  reactiveShape.angle = item.angle;
+  reactiveShape.meta = item.meta;
+  reactiveShape.name = item.name;
+
+  return reactiveShape;
 }

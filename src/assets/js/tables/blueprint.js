@@ -1,6 +1,7 @@
 $(document).ready(function () {
   let isInDraggingMode = false;
   let isInRotationMode = false;
+  let floorUid = 1;
 
   const $blueprint = $('#blueprint');
   const $blueprintContainer = $('#blueprint-container');
@@ -24,7 +25,7 @@ $(document).ready(function () {
   };
 
   const insertShape = function (reactiveShape) {
-    const uid = reactiveShape.generateUid();
+    const uid = reactiveShape.uid || reactiveShape.generateUid();
     const $shapeContainer = $(
       '<div data-uid="' + uid + '" class="' + shapeClass + '">' +
         '<div class="shape-text"></div>' +
@@ -41,6 +42,7 @@ $(document).ready(function () {
         drag: function (event, ui) {
           isInDraggingMode = true;
           calculateDraggingPosition(reactiveShape, event, ui);
+          ReactiveShapeCollection.saveToStorage(floorUid, reactiveShape);
         }
       })
       .rotatable({
@@ -50,6 +52,7 @@ $(document).ready(function () {
         wheel: false,
         rotate: function (e, d) {
           reactiveShape.rotated(d.angle.current);
+          ReactiveShapeCollection.saveToStorage(floorUid, reactiveShape);
         }
       });
   };
@@ -107,7 +110,8 @@ $(document).ready(function () {
       openPropertiesMenu(reactiveShape);
       ReactiveShapeCollection
         .deactivateAll()
-        .add(reactiveShape.uid, reactiveShape);
+        .add(reactiveShape.uid, reactiveShape)
+        .saveToStorage(floorUid);
     });
   })();
 
@@ -168,6 +172,7 @@ $(document).ready(function () {
 
     $('#delete-table').click(function () {
       ReactiveShapeCollection.deleteActive();
+      ReactiveShapeCollection.saveToStorage(floorUid);
       closePropertiesMenu();
     });
 
@@ -202,8 +207,6 @@ $(document).ready(function () {
         let top = item[1];
         let left = item[2];
 
-        console.log(reactiveShape.height);
-
         if (direction === 'bottom') {
           top += reactiveShape.height;
         } else if (direction === 'top') {
@@ -223,5 +226,21 @@ $(document).ready(function () {
       minHeight: 140,
       minWidth: 140
     });
+  })();
+
+  // Import
+  (function () {
+    const shapesData = ReactiveShapeCollection.getFromStorage(floorUid);
+
+    Object.keys(shapesData).map(function (uid) {
+      const item = shapesData[uid];
+      const reactiveShape = ReactiveShape.import(item);
+
+      insertShape(reactiveShape);
+      reactiveShape.activate().move();
+      ReactiveShapeCollection.add(reactiveShape.uid, reactiveShape);
+    });
+
+    ReactiveShapeCollection.deactivateAll();
   })();
 });

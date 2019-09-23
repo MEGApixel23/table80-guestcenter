@@ -59,3 +59,31 @@ ReactiveShapeCollection.iterate = function (cb) {
       cb(ReactiveShapeCollection.get(uid));
     });
 };
+
+ReactiveShapeCollection.saveToStorage = function (floorUid, shape) {
+  let data = {};
+  const key = 'floor.' + floorUid;
+
+  if (shape) {
+    data = ReactiveShapeCollection.getFromStorage(floorUid);
+    data[shape.uid] = shape.export();
+  } else {
+    ReactiveShapeCollection.iterate(function (s) {
+      data[s.uid] = s.export();
+    });
+  }
+
+  if (Object.keys(data).length === 0) {
+    localStorage.removeItem(key);
+
+    return;
+  }
+
+  localStorage.setItem(key, JSON.stringify(data));
+};
+
+ReactiveShapeCollection.getFromStorage = function (floorUid) {
+  const data = localStorage.getItem('floor.' + floorUid);
+
+  return JSON.parse(data) || {};
+};

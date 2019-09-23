@@ -79,3 +79,21 @@ const calculateDraggingPosition = function (reactiveShape, e, ui) {
     reactiveShape.setPos(newTop, newLeft).move();
   });
 };
+
+const scaleGrid = function ($blueprintContainer) {
+  const padding = 2;
+  const sidePadding = 20;
+  const gridStep = 20;
+  const $container = $('.floor--wrapper');
+  const width = $container.width();
+  const height = $container.height() - $container.offset().top;
+  const sidebarWidth = $('.workspace-sidebar').width();
+  const $propsEl = $('#properties-table');
+  const propertiesWidth = $propsEl.width();
+  const propertiesMargin = parseInt($propsEl.css('margin-left'));
+  const availableWidth = width - sidebarWidth - propertiesWidth - propertiesMargin - sidePadding * 2 - gridStep;
+
+  $blueprintContainer.width(availableWidth - availableWidth % gridStep)
+    .height(height - height % gridStep + padding)
+    .removeClass('loading');
+};

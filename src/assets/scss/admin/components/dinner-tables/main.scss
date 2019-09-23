@@ -14,7 +14,7 @@
 
 .operational-space {
     position: relative;
-    min-width: calc(100% - #{$properties-table--width} - #{$floors-dropdown--width} - 70px);
+    min-width: 300px;
     display: inline-block;
 
     .controls {
@@ -80,7 +80,7 @@
 }
 
 .properties-table {
-    max-width: $properties-table--width;
+    width: $properties-table--width;
     margin-top: 10px;
     margin-left: 10px;
     background-color: $blueprint--background--color;
@@ -215,4 +215,8 @@
     &.active .ui-rotatable-handle {
         visibility: visible;
     }
+}
+
+.loading {
+    visibility: hidden;
 }

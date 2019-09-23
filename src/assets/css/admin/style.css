@@ -590,7 +590,7 @@ footer {
 
 .operational-space {
   position: relative;
-  min-width: calc(100% - 200px - 152px - 70px);
+  min-width: 300px;
   display: inline-block; }
   .operational-space .controls {
     margin: 10px 0 0 10px;
@@ -638,7 +638,7 @@ footer {
   vertical-align: top; }
 
 .properties-table {
-  max-width: 200px;
+  width: 200px;
   margin-top: 10px;
   margin-left: 10px;
   background-color: #fff;
@@ -729,5 +729,8 @@ footer {
     visibility: hidden; }
   .shape--inserted.active .ui-rotatable-handle {
     visibility: visible; }
+
+.loading {
+  visibility: hidden; }
 
 /*# sourceMappingURL=style.css.map */

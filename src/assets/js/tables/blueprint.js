@@ -8,6 +8,9 @@ $(document).ready(function () {
   const shapeClass = 'shape--inserted';
   const shapeSelector = '.shape--inserted';
 
+  // Initial scaling of grid
+  scaleGrid($blueprintContainer);
+
   const openPropertiesMenu = function (s) {
     $('#table-name').val(s.name);
     $('#table-type').val(s.meta.type);
@@ -50,18 +53,6 @@ $(document).ready(function () {
         }
       });
   };
-
-  // Initial scaling of grid
-  (function () {
-    const padding = 2;
-    const gridStep = 20;
-    const $container = $('.floor--wrapper');
-    const width = $('.operational-space').width();
-    const height = $container.height() - $container.offset().top;
-
-    $blueprintContainer.width(width - width % gridStep + padding)
-      .height(height - height % gridStep + padding);
-  })();
 
   // Select handing
   (function () {

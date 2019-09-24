@@ -1,0 +1,1 @@
+{"version":3,"sources":["admin/components/dinner-tables/floors.scss"],"names":[],"mappings":"AAAA;EACE,mBAAkB;EAClB,UAAS;EACT,YAAW,EACZ","file":"floors.css","sourcesContent":[".options-items {\n  position: absolute;\n  top: 10px;\n  left: 170px;\n}"]}

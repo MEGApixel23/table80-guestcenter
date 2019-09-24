@@ -55,7 +55,8 @@
 
 .workspace-sidebar {
   display: inline-block;
-  vertical-align: top; }
+  vertical-align: top;
+  position: relative; }
 
 .properties-table {
   width: 200px;

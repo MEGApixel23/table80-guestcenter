@@ -210,37 +210,31 @@
     <div class="page-content-wrapper pr-0 pl-0 pt-0 floor--wrapper">
         <div class="content-viewport workspace">
             <div class="workspace-sidebar">
-                <div class="btn-group floors-dropdown">
+                <div id="floors-dropdown" class="btn-group floors-dropdown">
                     <button type="button"
+                            id="active-floor"
                             class="btn dropdown-toggle"
                             data-toggle="dropdown"
                             aria-haspopup="true"
                             aria-expanded="false"
                     >Main</button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">
-                            Main
-                            <span class="fa fa-pencil"></span>
-                        </a>
-                        <a class="dropdown-item" href="#">
-                            Patio
-                            <span class="fa fa-pencil"></span>
-                        </a>
-                        <a class="dropdown-item" href="#">
-                            Upstairs bar
-                            <span class="fa fa-pencil"></span>
-                        </a>
-                        <a class="dropdown-item" href="#">
-                            Rooftop Tables
-                            <span class="fa fa-pencil"></span>
-                        </a>
+                    <div id="floors-items" class="dropdown-menu">
                         <div class="dropdown-item">
-                            <input type="text" class="form-control form-control-std" placeholder="Enter a name">
+                            <input id="new-floor-name"
+                                   type="text"
+                                   class="form-control form-control-std"
+                                   placeholder="Enter a name"
+                            />
                         </div>
                         <div class="dropdown-item">
-                            <button type="button" class="btn btn-std btn-block">Add</button>
+                            <button id="add-new-floor" type="button" class="btn btn-std btn-block">Add</button>
                         </div>
                     </div>
+                </div>
+
+                <div id="options-items" class="dropdown-menu options-items">
+                    <a class="dropdown-item" href="javascript:void(0);" data-copy-floor>Copy</a>
+                    <a class="dropdown-item" href="javascript:void(0);" data-delete-floor>Delete</a>
                 </div>
 
                 <div class="elements--container">
@@ -450,6 +444,8 @@
 <script src="../../assets/js/tables/plugins/selectable.js"></script>
 <script src="../../assets/js/tables/plugins/shapes/ReactiveShape.js"></script>
 <script src="../../assets/js/tables/plugins/shapes/ReactiveShapeCollection.js"></script>
+<script src="../../assets/js/tables/plugins/floors/FloorsCollection.js"></script>
+<script src="../../assets/js/tables/floors.js"></script>
 <script src="../../assets/js/tables/blueprint.js"></script>
 <!-- endinject -->
 <!-- Vendor Js For This Page Ends-->

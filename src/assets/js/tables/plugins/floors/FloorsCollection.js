@@ -58,7 +58,7 @@ FloorsCollection.setActiveUid = function (uid) {
 };
 
 FloorsCollection.getActiveUid = function () {
-  return localStorage.getItem('activeFloorUid');
+  return localStorage.getItem('activeFloorUid') || FloorsCollection.mainFloorId;
 };
 
 FloorsCollection.getActive = function () {

@@ -92,3 +92,11 @@ ReactiveShapeCollection.getFromStorage = function (floorUid) {
 
   return JSON.parse(data) || {};
 };
+
+ReactiveShapeCollection.cloneInStorage = function (sourceFloorId, destSourceId) {
+  const sourceKey = getShapesStorageKey(sourceFloorId);
+  const destKey = getShapesStorageKey(destSourceId);
+  const sourceData = localStorage.getItem(sourceKey);
+
+  localStorage.setItem(destKey, sourceData);
+};

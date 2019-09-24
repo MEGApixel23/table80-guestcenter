@@ -56,7 +56,7 @@ $(document).ready(function () {
     }
 
     const floor = {
-      uid: +new Date() + '.' + Math.round(Math.random() * 1000),
+      uid: FloorsCollection.generateUid(),
       name: name
     };
 
@@ -93,6 +93,19 @@ $(document).ready(function () {
     const uid = $(this).attr('data-delete-floor');
 
     removeActiveFloor(uid);
+  });
+
+  $(document).on('click', '[data-copy-floor]', function () {
+    const uid = $(this).attr('data-copy-floor');
+    const floor = FloorsCollection.getFromStorage(uid);
+    const cloned = cloneObj(floor);
+
+    cloned.uid = FloorsCollection.generateUid();
+
+    ReactiveShapeCollection.cloneInStorage(uid, cloned.uid);
+    FloorsCollection.addToStorage(cloned);
+    insertNewFloor(cloned);
+    selectActiveFloor(cloned.uid);
   });
 
   selectActiveFloor(FloorsCollection.getActiveUid());

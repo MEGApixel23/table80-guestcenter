@@ -1,21 +1,24 @@
 function FloorsCollection () {}
 
 FloorsCollection.mainFloorId = '1';
+FloorsCollection.generateUid = function () {
+  return +new Date() + '.' + Math.round(Math.random() * 1000);
+};
 
-FloorsCollection.getFromStorage = function () {
+FloorsCollection.getFromStorage = function (uid) {
   const data = localStorage.getItem('floors');
 
   if (data) {
     const floors = JSON.parse(data);
 
     if (floors && floors.length) {
-      return floors;
+      return uid ? floors.find(function (f) { return f.uid === uid; }) : floors;
     }
   }
 
   FloorsCollection.addToStorage({ uid: FloorsCollection.mainFloorId, name: 'Main' });
 
-  return FloorsCollection.getFromStorage();
+  return FloorsCollection.getFromStorage(uid);
 };
 
 FloorsCollection.addToStorage = function (floor) {
@@ -67,4 +70,3 @@ FloorsCollection.getActive = function () {
 
   return activeFloor || floors[0];
 };
-

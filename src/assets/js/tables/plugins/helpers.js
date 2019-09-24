@@ -97,3 +97,7 @@ const scaleGrid = function ($blueprintContainer) {
     .height(height - height % gridStep + padding)
     .removeClass('loading');
 };
+
+const cloneObj = function (obj) {
+  return JSON.parse(JSON.stringify(obj));
+}

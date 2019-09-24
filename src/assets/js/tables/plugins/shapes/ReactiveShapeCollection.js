@@ -1,3 +1,7 @@
+const getShapesStorageKey = function (floorUid) {
+  return 'floor.' + floorUid + '.shapes';
+};
+
 function ReactiveShapeCollection () {}
 
 ReactiveShapeCollection.collection = {};
@@ -62,12 +66,13 @@ ReactiveShapeCollection.iterate = function (cb) {
 
 ReactiveShapeCollection.saveToStorage = function (floorUid, shape) {
   let data = {};
-  const key = 'floor.' + floorUid;
+  const key = getShapesStorageKey(floorUid);
 
   if (shape) {
     data = ReactiveShapeCollection.getFromStorage(floorUid);
     data[shape.uid] = shape.export();
   } else {
+    // If no shape provided export all
     ReactiveShapeCollection.iterate(function (s) {
       data[s.uid] = s.export();
     });
@@ -83,7 +88,7 @@ ReactiveShapeCollection.saveToStorage = function (floorUid, shape) {
 };
 
 ReactiveShapeCollection.getFromStorage = function (floorUid) {
-  const data = localStorage.getItem('floor.' + floorUid);
+  const data = localStorage.getItem(getShapesStorageKey(floorUid));
 
   return JSON.parse(data) || {};
 };

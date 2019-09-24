@@ -89,6 +89,7 @@ $(document).ready(function () {
 
       if ($el.hasClass(shapeClass) === false && $el.closest(shapeSelector).length === 0) {
         ReactiveShapeCollection.deactivateAll();
+        closePropertiesMenu();
       }
     });
   })();
@@ -141,6 +142,7 @@ $(document).ready(function () {
         .map(function (s) {
           s.setName(name);
         });
+      ReactiveShapeCollection.saveToStorage(floorUid);
     });
 
     $('#table-type').change(function () {
@@ -150,6 +152,7 @@ $(document).ready(function () {
         .map(function (s) {
           s.meta.type = type;
         });
+      ReactiveShapeCollection.saveToStorage(floorUid);
     });
 
     $('#table-min-party').keyup(function () {
@@ -159,6 +162,7 @@ $(document).ready(function () {
         .map(function (s) {
           s.meta.minParty = minParty;
         });
+      ReactiveShapeCollection.saveToStorage(floorUid);
     });
 
     $('#table-max-party').change(function () {
@@ -168,6 +172,7 @@ $(document).ready(function () {
         .map(function (s) {
           s.meta.maxParty = maxParty;
         });
+      ReactiveShapeCollection.saveToStorage(floorUid);
     });
 
     $('#delete-table').click(function () {
@@ -237,7 +242,10 @@ $(document).ready(function () {
       const reactiveShape = ReactiveShape.import(item);
 
       insertShape(reactiveShape);
-      reactiveShape.activate().move();
+      reactiveShape.setName(reactiveShape.name)
+        .rotated(reactiveShape.angle)
+        .activate()
+        .move();
       ReactiveShapeCollection.add(reactiveShape.uid, reactiveShape);
     });
 

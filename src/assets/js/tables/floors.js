@@ -26,6 +26,10 @@ $(document).ready(function () {
     const floor = FloorsCollection.getActive();
 
     $activeFloor.text(floor.name);
+
+    setTimeout(function () {
+      $(document).trigger('activeFloorChanged', [uid]);
+    });
   };
 
   const removeActiveFloor = function (uid) {
@@ -34,13 +38,9 @@ $(document).ready(function () {
     }
 
     FloorsCollection.removeFromStorage(uid);
-    FloorsCollection.setActiveUid(FloorsCollection.mainFloorId);
+    selectActiveFloor(FloorsCollection.mainFloorId);
 
     $('[data-floor-uid="' + uid + '"]').remove();
-
-    const floor = FloorsCollection.getActive();
-
-    $activeFloor.text(floor.name);
   };
 
   // Initial import
@@ -94,4 +94,6 @@ $(document).ready(function () {
 
     removeActiveFloor(uid);
   });
+
+  selectActiveFloor(FloorsCollection.getActiveUid());
 });

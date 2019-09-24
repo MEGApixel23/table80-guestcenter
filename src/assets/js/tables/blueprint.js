@@ -9,6 +9,11 @@ $(document).ready(function () {
   const shapeClass = 'shape--inserted';
   const shapeSelector = '.shape--inserted';
 
+  $(document).on('activeFloorChanged', function (e, uid) {
+    floorUid = uid;
+    importShapes();
+  });
+
   // Initial scaling of grid
   scaleGrid($blueprintContainer);
 
@@ -234,7 +239,10 @@ $(document).ready(function () {
   })();
 
   // Import
-  (function () {
+  const importShapes = function () {
+    ReactiveShapeCollection.collection = [];
+    $blueprint.html('');
+
     const shapesData = ReactiveShapeCollection.getFromStorage(floorUid);
 
     Object.keys(shapesData).map(function (uid) {
@@ -250,5 +258,7 @@ $(document).ready(function () {
     });
 
     ReactiveShapeCollection.deactivateAll();
-  })();
+  };
+
+  importShapes();
 });

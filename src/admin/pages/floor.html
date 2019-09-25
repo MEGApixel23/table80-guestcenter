@@ -327,16 +327,16 @@
                 <div class="controls--container text-right">
                     <div class="controls">
                         <div class="btn-group mb-0" data-toggle="buttons">
-                            <label class="btn p-3 border-right-0">
-                                <input type="radio" name="options" id="option1_1" checked="">
+                            <label class="btn p-3 border-right-0" id="zoom-plus" data-zoom-control="1">
+                                <input type="radio" name="options">
                                 <i class="fa fa-search-plus"></i>
                             </label>
-                            <label class="btn p-3 active">
-                                <input type="radio" name="options" id="option1_2" checked="">
+                            <label class="btn p-3" id="zoom-minus" data-zoom-control="-1">
+                                <input type="radio" name="options">
                                 <i class="fa fa-search-minus"></i>
                             </label>
-                            <label class="btn p-3 border-left-0">
-                                <input type="radio" name="options" id="option1_3">
+                            <label class="btn p-3 border-left-0 active" id="zoom-none" data-zoom-control="0">
+                                <input type="radio" name="options">
                                 <i class="fa fa-compress"></i>
                             </label>
                         </div>
@@ -363,7 +363,7 @@
                     </div>
                 </div>
                 <div id="blueprint-container" class="blueprint--container loading">
-                    <div id="blueprint" class="blueprint"></div>
+                    <div id="blueprint" class="blueprint" data-curr-zoom="100"></div>
                 </div>
             </div>
 

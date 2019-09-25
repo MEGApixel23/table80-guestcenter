@@ -35,7 +35,8 @@
   padding: 20px;
   margin-top: 10px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  position: relative; }
+  position: relative;
+  overflow: scroll; }
   .blueprint--container .blueprint {
     border: 2px solid #f0eff0;
     background-image: linear-gradient(#f0eff0 2px, transparent 2px), linear-gradient(90deg, #f0eff0 2px, transparent 2px), linear-gradient(#f0eff0 1px, transparent 1px), linear-gradient(90deg, #f0eff0 1px, transparent 1px);

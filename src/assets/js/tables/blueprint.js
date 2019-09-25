@@ -9,23 +9,6 @@ $(document).ready(function () {
   const shapeClass = 'shape--inserted';
   const shapeSelector = '.shape--inserted';
 
-  $(document).on('activeFloorChanged', function (e, uid) {
-    floorUid = uid;
-    importShapes();
-  });
-
-  $(document).on('shapeActivated', function () {
-    const activeShapes = ReactiveShapeCollection.getActive();
-
-    if (activeShapes.length === 1) {
-      openPropertiesMenu(activeShapes[0]);
-    } else if (activeShapes.length > 1) {
-      openPropertiesMenu(activeShapes[0], true);
-    } else {
-      closePropertiesMenu();
-    }
-  });
-
   // Initial scaling of grid
   scaleGrid($blueprintContainer);
 
@@ -61,6 +44,45 @@ $(document).ready(function () {
         }
       });
   };
+
+  // Import
+  const importShapes = function () {
+    ReactiveShapeCollection.collection = [];
+    $blueprint.html('');
+
+    const shapesData = ReactiveShapeCollection.getFromStorage(floorUid);
+
+    Object.keys(shapesData).map(function (uid) {
+      const item = shapesData[uid];
+      const reactiveShape = ReactiveShape.import(item);
+
+      insertShape(reactiveShape);
+      reactiveShape.setName(reactiveShape.name)
+        .rotated(reactiveShape.angle)
+        .activate()
+        .move();
+      ReactiveShapeCollection.add(reactiveShape.uid, reactiveShape);
+    });
+
+    ReactiveShapeCollection.deactivateAll();
+  };
+
+  $(document).on('activeFloorChanged', function (e, uid) {
+    floorUid = uid;
+    importShapes();
+  });
+
+  $(document).on('shapeActivated', function () {
+    const activeShapes = ReactiveShapeCollection.getActive();
+
+    if (activeShapes.length === 1) {
+      openPropertiesMenu(activeShapes[0]);
+    } else if (activeShapes.length > 1) {
+      openPropertiesMenu(activeShapes[0], true);
+    } else {
+      closePropertiesMenu();
+    }
+  });
 
   // Select handing
   (function () {
@@ -236,27 +258,47 @@ $(document).ready(function () {
     });
   })();
 
-  // Import
-  const importShapes = function () {
-    ReactiveShapeCollection.collection = [];
-    $blueprint.html('');
+  // Zoom
+  (function () {
+    const originalBlueprintW = $blueprint.outerWidth();
+    const originalBlueprintH = $blueprint.outerHeight();
 
-    const shapesData = ReactiveShapeCollection.getFromStorage(floorUid);
+    $('[data-zoom-control]').click(function () {
+      const zoomStep = 10;
+      const defaultZoom = 100;
+      const direction = parseInt($(this).attr('data-zoom-control'));
+      const currZoom = parseInt($blueprint.attr('data-curr-zoom'));
+      const nextZoom = direction === 0 ? defaultZoom : currZoom + (zoomStep * direction);
+      const ratio = nextZoom / defaultZoom;
+      const relationalRation = defaultZoom / currZoom;
 
-    Object.keys(shapesData).map(function (uid) {
-      const item = shapesData[uid];
-      const reactiveShape = ReactiveShape.import(item);
+      if (nextZoom < zoomStep) {
+        return;
+      }
 
-      insertShape(reactiveShape);
-      reactiveShape.setName(reactiveShape.name)
-        .rotated(reactiveShape.angle)
-        .activate()
-        .move();
-      ReactiveShapeCollection.add(reactiveShape.uid, reactiveShape);
+      ReactiveShapeCollection.iterate(function (s) {
+        const originalW = relationalRation * s.width;
+        const originalH = relationalRation * s.height;
+        const originalTop = relationalRation * s.pos.top;
+        const originalLeft = relationalRation * s.pos.left;
+        const newW = originalW * ratio;
+        const newH = originalH * ratio;
+        const newTop = originalTop * ratio;
+        const newLeft = originalLeft * ratio;
+
+        s.resize(newW, newH).setPos(newTop, newLeft).move();
+      });
+
+      const newW = originalBlueprintW * ratio;
+      const newH = originalBlueprintH * ratio;
+
+      $blueprint
+        .attr('data-curr-zoom', nextZoom)
+        .css('width', newW)
+        .css('height', newH);
+      ReactiveShapeCollection.saveToStorage(floorUid);
     });
-
-    ReactiveShapeCollection.deactivateAll();
-  };
+  })();
 
   importShapes();
 });

@@ -126,6 +126,7 @@ function ReactiveShape (svg) {
     svg.setAttribute('width', this.width);
     svg.setAttribute('height', this.height);
     handle.style.left = (this.width - handleWidth) / 2 + 'px';
+    this.positionName();
 
     return this;
   };
@@ -174,14 +175,24 @@ function ReactiveShape (svg) {
   };
 
   this.export = function () {
+    const currZoom = parseInt($('#blueprint').attr('data-curr-zoom'));
+    const relationalRation = 100 / currZoom;
+    const originalW = relationalRation * this.width;
+    const originalH = relationalRation * this.height;
+    const originalTop = relationalRation * this.pos.top;
+    const originalLeft = relationalRation * this.pos.left;
+
     return {
       uid: this.uid,
-      w: this.width,
-      h: this.height,
+      w: originalW,
+      h: originalH,
       name: this.name,
       angle: this.angle,
       meta: this.meta,
-      pos: this.pos,
+      pos: {
+        top: originalTop,
+        left: originalLeft,
+      },
       svg: {
         data: svg.getAttribute('data')
       }

@@ -14,20 +14,20 @@ $(document).ready(function () {
     importShapes();
   });
 
+  $(document).on('shapeActivated', function () {
+    const activeShapes = ReactiveShapeCollection.getActive();
+
+    if (activeShapes.length === 1) {
+      openPropertiesMenu(activeShapes[0]);
+    } else if (activeShapes.length > 1) {
+      openPropertiesMenu(activeShapes[0], true);
+    } else {
+      closePropertiesMenu();
+    }
+  });
+
   // Initial scaling of grid
   scaleGrid($blueprintContainer);
-
-  const openPropertiesMenu = function (s) {
-    $('#table-name').val(s.name);
-    $('#table-type').val(s.meta.type);
-    $('#table-min-party').val(s.meta.minParty);
-    $('#table-max-party').val(s.meta.maxParty);
-    $('#properties-table').removeAttr('hidden');
-  };
-
-  const closePropertiesMenu = function () {
-    $('#properties-table').attr('hidden', 'hidden');
-  };
 
   const insertShape = function (reactiveShape) {
     const uid = reactiveShape.uid || reactiveShape.generateUid();
@@ -84,7 +84,6 @@ $(document).ready(function () {
         ReactiveShapeCollection.deactivateAll();
 
         s.activate();
-        openPropertiesMenu(s);
       }
     });
 
@@ -113,7 +112,6 @@ $(document).ready(function () {
         .setPos(25, 25)
         .move()
         .activate();
-      openPropertiesMenu(reactiveShape);
       ReactiveShapeCollection
         .deactivateAll()
         .add(reactiveShape.uid, reactiveShape)

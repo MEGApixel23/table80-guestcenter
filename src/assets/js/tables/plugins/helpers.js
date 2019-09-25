@@ -100,4 +100,32 @@ const scaleGrid = function ($blueprintContainer) {
 
 const cloneObj = function (obj) {
   return JSON.parse(JSON.stringify(obj));
-}
+};
+
+const openPropertiesMenu = function (s, shortVersion) {
+  const $tableName = $('#table-name');
+  const $tableType = $('#table-type');
+  const $tableMinParty = $('#table-min-party');
+  const $tableMaxParty = $('#table-max-party');
+
+  if (shortVersion) {
+    $tableName.closest('.form-group').hide();
+    $tableMinParty.closest('.form-group').hide();
+    $tableMaxParty.closest('.form-group').hide();
+  } else {
+    $tableName.closest('.form-group').show();
+    $tableMinParty.closest('.form-group').show();
+    $tableMaxParty.closest('.form-group').show();
+    $tableName.val(s.name);
+    $tableMinParty.val(s.meta.minParty);
+    $tableMaxParty.val(s.meta.maxParty);
+  }
+
+  $tableType.val(s.meta.type);
+
+  $('#properties-table').removeAttr('hidden');
+};
+
+const closePropertiesMenu = function () {
+  $('#properties-table').attr('hidden', 'hidden');
+};

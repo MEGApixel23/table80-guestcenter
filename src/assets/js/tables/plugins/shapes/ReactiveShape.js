@@ -82,6 +82,8 @@ function ReactiveShape (svg) {
 
         image.setAttribute(linkAttr, activeLink);
       });
+
+      $(document).trigger('shapeActivated', [this]);
     }.bind(this));
 
     return this;

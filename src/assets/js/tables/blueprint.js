@@ -122,6 +122,37 @@ $(document).ready(function () {
 
   // Drag handing
   (function () {
+    let row = [];
+    const insertShapeThumb = function (quantityInRow, $container) {
+      return function (s, i, list) {
+        row.push(
+          $(
+            '<div class="dinner-table--wrapper" data-insert-shape>' +
+            '<object data="' + s.link + '" ' +
+            'type="image/svg+xml" ' +
+            (s.w ? 'data-initial-w="' + s.w + '" ' : '') +
+            (s.h ? 'data-initial-h="' + s.h + '" ' : '') +
+            '></object>' +
+            '</div>'
+          )
+        );
+
+        if ((i !== 0 && (i + 1) % quantityInRow === 0) || list.length === (i + 1)) {
+          const $row = $('<div class="elements-row"></div>');
+
+          row.map(function ($item) {
+            $row.append($item);
+          });
+
+          $container.append($row);
+          row = [];
+        }
+      };
+    };
+
+    window.shapesList.map(insertShapeThumb(3, $('#vertical-elements')));
+    window.shapesList.map(insertShapeThumb(7, $('#horizontal-elements')));
+
     // Allows to catch click events on SVG <object>
     $('[data-insert-shape] object').css('pointer-events', 'none');
 

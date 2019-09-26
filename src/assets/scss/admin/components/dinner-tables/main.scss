@@ -118,7 +118,7 @@
     .dropdown-menu {
         border: 1px solid $no-accent-color;
 
-        span {
+        .edit-icon {
             position: absolute;
             right: 10px;
         }
@@ -246,5 +246,13 @@
 
     .elements--container.horizontal {
         display: block;
+    }
+}
+
+.edit-icon {
+    padding: 5px;
+
+    &:hover {
+        color: #ffdad6;
     }
 }

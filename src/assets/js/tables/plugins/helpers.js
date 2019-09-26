@@ -129,3 +129,16 @@ const openPropertiesMenu = function (s, shortVersion) {
 const closePropertiesMenu = function () {
   $('#properties-table').attr('hidden', 'hidden');
 };
+
+const toggleEditMode = function (mode) {
+  const $addNewFloorButton = $('#add-new-floor');
+  const $renameFloorButton = $('#rename-floor');
+
+  if (mode === 'add') {
+    $addNewFloorButton.show();
+    $renameFloorButton.hide();
+  } else {
+    $addNewFloorButton.hide();
+    $renameFloorButton.show();
+  }
+};

@@ -85,7 +85,7 @@
       margin-left: 87px; }
   .floors-dropdown .dropdown-menu {
     border: 1px solid #b8b8bd; }
-    .floors-dropdown .dropdown-menu span {
+    .floors-dropdown .dropdown-menu .edit-icon {
       position: absolute;
       right: 10px; }
     .floors-dropdown .dropdown-menu > * {
@@ -171,5 +171,10 @@
     display: none; }
   .elements--container.horizontal {
     display: block; } }
+
+.edit-icon {
+  padding: 5px; }
+  .edit-icon:hover {
+    color: #ffdad6; }
 
 /*# sourceMappingURL=main.css.map */

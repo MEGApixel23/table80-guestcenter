@@ -206,17 +206,17 @@ $(document).ready(function () {
 
       ReactiveShapeCollection.getActive()
         .map(function (s) {
-          s.meta.type = type;
+          s.type = type;
         });
       ReactiveShapeCollection.saveToStorage(floorUid);
     });
 
-    $('#table-min-party').keyup(function () {
+    $('#table-min-party').change(function () {
       const minParty = $(this).val();
 
       ReactiveShapeCollection.getActive()
         .map(function (s) {
-          s.meta.minParty = minParty;
+          s.minParty = minParty;
         });
       ReactiveShapeCollection.saveToStorage(floorUid);
     });
@@ -226,7 +226,7 @@ $(document).ready(function () {
 
       ReactiveShapeCollection.getActive()
         .map(function (s) {
-          s.meta.maxParty = maxParty;
+          s.maxParty = maxParty;
         });
       ReactiveShapeCollection.saveToStorage(floorUid);
     });
@@ -245,14 +245,14 @@ $(document).ready(function () {
         const $clonedShape = $(s.getNode()).clone();
         const shape = $clonedShape.get()[0];
         const reactiveShape = new ReactiveShape(shape);
-        const top = s.pos.top;
-        const left = s.pos.left;
+        const top = s.top;
+        const left = s.left;
 
         reactiveShape.height = s.height;
         reactiveShape.width = s.width;
         reactiveShape.angle = s.angle;
 
-        if (s.pos.top + s.height > $blueprintContainer.height()) {
+        if (s.top + s.height > $blueprintContainer.height()) {
           direction = 'top';
         }
 
@@ -310,8 +310,8 @@ $(document).ready(function () {
       ReactiveShapeCollection.iterate(function (s) {
         const originalW = relationalRation * s.width;
         const originalH = relationalRation * s.height;
-        const originalTop = relationalRation * s.pos.top;
-        const originalLeft = relationalRation * s.pos.left;
+        const originalTop = relationalRation * s.top;
+        const originalLeft = relationalRation * s.left;
         const newW = originalW * ratio;
         const newH = originalH * ratio;
         const newTop = originalTop * ratio;

@@ -35,8 +35,8 @@ const calculateDraggingPosition = function (reactiveShape, e, ui) {
     reactiveShape.activate();
   }
 
-  const originalTop = reactiveShape.pos.top;
-  const originalLeft = reactiveShape.pos.left;
+  const originalTop = reactiveShape.top;
+  const originalLeft = reactiveShape.left;
   const deltaTop = ui.position.top - originalTop;
   const deltaLeft = ui.position.left - originalLeft;
   const activeReactiveShapes = ReactiveShapeCollection.getActive();
@@ -48,8 +48,8 @@ const calculateDraggingPosition = function (reactiveShape, e, ui) {
       continue;
     }
 
-    const newTop = reactiveShape.pos.top + deltaTop;
-    const newLeft = reactiveShape.pos.left + deltaLeft;
+    const newTop = reactiveShape.top + deltaTop;
+    const newLeft = reactiveShape.left + deltaLeft;
 
     if (
       newTop < minTop || newLeft < minLeft || (newTop + reactiveShape.height - gridStep) > maxBottom ||
@@ -64,8 +64,8 @@ const calculateDraggingPosition = function (reactiveShape, e, ui) {
 
   // Reverts a position of dragged node to original if other shapes are out of boundaries.
   if (isOutsideBoundaries) {
-    ui.position.top = reactiveShape.pos.top;
-    ui.position.left = reactiveShape.pos.left;
+    ui.position.top = reactiveShape.top;
+    ui.position.left = reactiveShape.left;
 
     return;
   }
@@ -117,11 +117,11 @@ const openPropertiesMenu = function (s, shortVersion) {
     $tableMinParty.closest('.form-group').show();
     $tableMaxParty.closest('.form-group').show();
     $tableName.val(s.name);
-    $tableMinParty.val(s.meta.minParty);
-    $tableMaxParty.val(s.meta.maxParty);
+    $tableMinParty.val(s.minParty);
+    $tableMaxParty.val(s.maxParty);
   }
 
-  $tableType.val(s.meta.type);
+  $tableType.val(s.type);
 
   $('#properties-table').removeAttr('hidden');
 };

@@ -8,16 +8,12 @@ function ReactiveShape (svg) {
   this.isActive = false;
   this.name = '';
   this.angle = 0;
-  this.meta = {
-    type: 0,
-    minParty: 1,
-    maxParty: 1
-  };
+  this.type = 0;
+  this.minParty = 1;
+  this.maxParty = 1;
   this.isInitialized = false;
-  this.pos = {
-    top: 0,
-    left: 0
-  };
+  this.top = 0;
+  this.left = 0;
 
   this.loaded = new Promise(function (res) {
     svg.onload = function () {
@@ -57,8 +53,8 @@ function ReactiveShape (svg) {
   };
 
   this.move = function () {
-    svg.parentNode.style.top = this.pos.top + 'px';
-    svg.parentNode.style.left = this.pos.left + 'px';
+    svg.parentNode.style.top = this.top + 'px';
+    svg.parentNode.style.left = this.left + 'px';
 
     return this;
   };
@@ -168,8 +164,8 @@ function ReactiveShape (svg) {
   };
 
   this.setPos = function (top, left) {
-    this.pos.top = top;
-    this.pos.left = left;
+    this.top = top;
+    this.left = left;
 
     return this;
   };
@@ -179,8 +175,8 @@ function ReactiveShape (svg) {
     const relationalRation = 100 / currZoom;
     const originalW = relationalRation * this.width;
     const originalH = relationalRation * this.height;
-    const originalTop = relationalRation * this.pos.top;
-    const originalLeft = relationalRation * this.pos.left;
+    const originalTop = relationalRation * this.top;
+    const originalLeft = relationalRation * this.left;
 
     return {
       uid: this.uid,
@@ -188,21 +184,19 @@ function ReactiveShape (svg) {
       h: originalH,
       name: this.name,
       angle: this.angle,
-      meta: this.meta,
-      pos: {
-        top: originalTop,
-        left: originalLeft,
-      },
-      svg: {
-        data: svg.getAttribute('data')
-      }
+      type: this.type,
+      minParty: this.minParty,
+      maxParty: this.maxParty,
+      top: originalTop,
+      left: originalLeft,
+      svgPath: svg.getAttribute('data')
     }
   };
 }
 
 ReactiveShape.import = function (item) {
   const $obj = $(
-    '<object data="' + item.svg.data + '" ' +
+    '<object data="' + item.svgPath + '" ' +
       'type="image/svg+xml" ' +
       'data-initial-w="' + item.w + '" ' +
       'data-initial-h="' + item.h + '"' +
@@ -212,11 +206,14 @@ ReactiveShape.import = function (item) {
   const reactiveShape = new ReactiveShape(shape);
 
   reactiveShape.uid = item.uid;
-  reactiveShape.pos = item.pos;
+  reactiveShape.top = item.top;
+  reactiveShape.left = item.left;
   reactiveShape.height = item.h;
   reactiveShape.width = item.w;
   reactiveShape.angle = item.angle;
-  reactiveShape.meta = item.meta;
+  reactiveShape.type = item.type;
+  reactiveShape.minParty = item.minParty;
+  reactiveShape.maxParty = item.maxParty;
   reactiveShape.name = item.name;
 
   return reactiveShape;

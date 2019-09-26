@@ -21,6 +21,21 @@ FloorsCollection.getFromStorage = function (uid) {
   return FloorsCollection.getFromStorage(uid);
 };
 
+FloorsCollection.saveToStorage = function (floor) {
+  const data = localStorage.getItem('floors');
+  const uid = floor.uid;
+  const floors = data ? JSON.parse(data) : [];
+
+  for (let i = 0; i < floors.length; i++) {
+    if (floors[i].uid === uid) {
+      floors[i] = floor;
+      break;
+    }
+  }
+
+  localStorage.setItem('floors', JSON.stringify(floors));
+};
+
 FloorsCollection.addToStorage = function (floor) {
   let data = [];
   let isUpdated = false;
@@ -39,6 +54,7 @@ FloorsCollection.addToStorage = function (floor) {
   }
 
   if (isUpdated === false) {
+    console.log('Updated', floor.uid);
     data.push(floor);
   }
 
@@ -54,11 +70,11 @@ FloorsCollection.removeFromStorage = function (uid) {
 };
 
 FloorsCollection.setActiveUid = function (uid) {
-  localStorage.setItem('activeFloorUid', uid);
+  localStorage.setItem('activeFloorUid', JSON.stringify(uid));
 };
 
 FloorsCollection.getActiveUid = function () {
-  return localStorage.getItem('activeFloorUid') || FloorsCollection.mainFloorId;
+  return JSON.parse(localStorage.getItem('activeFloorUid')) || FloorsCollection.mainFloorId;
 };
 
 FloorsCollection.getActive = function () {

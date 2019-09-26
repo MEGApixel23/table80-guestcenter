@@ -1,7 +1,3 @@
-const getShapesStorageKey = function (floorUid) {
-  return 'floor.' + floorUid + '.shapes';
-};
-
 function ReactiveShapeCollection () {}
 
 ReactiveShapeCollection.collection = {};
@@ -65,38 +61,54 @@ ReactiveShapeCollection.iterate = function (cb) {
 };
 
 ReactiveShapeCollection.saveToStorage = function (floorUid, shape) {
-  let data = {};
-  const key = getShapesStorageKey(floorUid);
+  let tables = {};
 
   if (shape) {
-    data = ReactiveShapeCollection.getFromStorage(floorUid);
-    data[shape.uid] = shape.export();
+    tables = ReactiveShapeCollection.getFromStorage(floorUid);
+    tables[shape.uid] = shape.export();
   } else {
     // If no shape provided export all
     ReactiveShapeCollection.iterate(function (s) {
-      data[s.uid] = s.export();
+      tables[s.uid] = s.export();
     });
   }
 
-  if (Object.keys(data).length === 0) {
-    localStorage.removeItem(key);
+  const floor = FloorsCollection.getFromStorage(floorUid + '');
 
-    return;
-  }
-
-  localStorage.setItem(key, JSON.stringify(data));
+  floor.tables = tables;
+  FloorsCollection.saveToStorage(floor);
 };
 
 ReactiveShapeCollection.getFromStorage = function (floorUid) {
-  const data = localStorage.getItem(getShapesStorageKey(floorUid));
+  const floor = FloorsCollection.getFromStorage(floorUid + '');
 
-  return JSON.parse(data) || {};
+  return floor && floor.tables || {};
 };
 
 ReactiveShapeCollection.cloneInStorage = function (sourceFloorId, destSourceId) {
-  const sourceKey = getShapesStorageKey(sourceFloorId);
-  const destKey = getShapesStorageKey(destSourceId);
-  const sourceData = localStorage.getItem(sourceKey);
+  const source = FloorsCollection.getFromStorage(sourceFloorId);
 
-  localStorage.setItem(destKey, sourceData);
+  if (!source) {
+    return false;
+  }
+
+  const clone = cloneObj(source);
+  const tables = {};
+
+  clone.name = clone.name + ' (copy)';
+  clone.uid = destSourceId;
+
+  if (clone.tables && typeof clone.tables === 'object') {
+    const uids = Object.keys(clone.tables);
+
+    for (let i = 0; i < uids.length; i++) {
+      const currTable = clone.tables[uids[i]];
+
+      currTable.uid = +new Date() + '' + Math.random();
+      tables[currTable.uid] = currTable;
+    }
+  }
+
+  clone.tables = tables;
+  FloorsCollection.addToStorage(clone);
 };

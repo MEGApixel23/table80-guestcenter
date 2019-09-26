@@ -97,13 +97,13 @@ $(document).ready(function () {
 
   $(document).on('click', '[data-copy-floor]', function () {
     const uid = $(this).attr('data-copy-floor');
-    const floor = FloorsCollection.getFromStorage(uid);
-    const cloned = cloneObj(floor);
+    const newUid = FloorsCollection.generateUid();
 
-    cloned.uid = FloorsCollection.generateUid();
+    ReactiveShapeCollection.cloneInStorage(uid, newUid);
 
-    ReactiveShapeCollection.cloneInStorage(uid, cloned.uid);
-    FloorsCollection.addToStorage(cloned);
+    const cloned = FloorsCollection.getFromStorage(newUid);
+    console.log(newUid, cloned);
+
     insertNewFloor(cloned);
     selectActiveFloor(cloned.uid);
   });

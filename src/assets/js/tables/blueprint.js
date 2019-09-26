@@ -291,9 +291,6 @@ $(document).ready(function () {
 
   // Zoom
   (function () {
-    const originalBlueprintW = $blueprint.outerWidth();
-    const originalBlueprintH = $blueprint.outerHeight();
-
     $('[data-zoom-control]').click(function () {
       const zoomStep = 10;
       const defaultZoom = 100;
@@ -320,13 +317,7 @@ $(document).ready(function () {
         s.resize(newW, newH).setPos(newTop, newLeft).move();
       });
 
-      const newW = originalBlueprintW * ratio;
-      const newH = originalBlueprintH * ratio;
-
-      $blueprint
-        .attr('data-curr-zoom', nextZoom)
-        .css('width', newW)
-        .css('height', newH);
+      $blueprint.attr('data-curr-zoom', nextZoom);
       ReactiveShapeCollection.saveToStorage(floorUid);
     });
   })();

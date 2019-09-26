@@ -49,7 +49,7 @@
     margin-top: 10px;
     box-shadow: $container--shadow;
     position: relative;
-    overflow: scroll;
+    overflow: hidden;
 
     .blueprint {
         border: 2px solid $blueprint--bold-divider--color;

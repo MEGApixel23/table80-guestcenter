@@ -1,0 +1,22 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100" height="100" viewBox="0 0 100 100">
+    <style type="text/css">
+        svg {
+            cursor: pointer;
+        }
+    </style>
+    <g id="table">
+        <image width="100" height="100" xlink:href="basic/round-table.svg"/>
+    </g>
+    <g id="chairs">
+        <image width="100" height="100" xlink:href="basic/chair-round-table-x-small.svg"/>
+        <image width="100" height="100" xlink:href="basic/chair-round-table-x-small.svg" transform="rotate(36,50,50)"/>
+        <image width="100" height="100" xlink:href="basic/chair-round-table-x-small.svg" transform="rotate(72,50,50)"/>
+        <image width="100" height="100" xlink:href="basic/chair-round-table-x-small.svg" transform="rotate(108,50,50)"/>
+        <image width="100" height="100" xlink:href="basic/chair-round-table-x-small.svg" transform="rotate(144,50,50)"/>
+        <image width="100" height="100" xlink:href="basic/chair-round-table-x-small.svg" transform="rotate(180,50,50)"/>
+        <image width="100" height="100" xlink:href="basic/chair-round-table-x-small.svg" transform="rotate(216,50,50)"/>
+        <image width="100" height="100" xlink:href="basic/chair-round-table-x-small.svg" transform="rotate(252,50,50)"/>
+        <image width="100" height="100" xlink:href="basic/chair-round-table-x-small.svg" transform="rotate(288,50,50)"/>
+        <image width="100" height="100" xlink:href="basic/chair-round-table-x-small.svg" transform="rotate(324,50,50)"/>
+    </g>
+</svg>

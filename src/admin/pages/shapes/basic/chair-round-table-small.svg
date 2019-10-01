@@ -1,0 +1,10 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+    <style type="text/css">
+        .chair {
+            stroke: none;
+            fill: rgb(79, 76, 83);
+        }
+    </style>
+
+    <path d="M40.2,11.2 A40,40 0 0,1 59.7,11.2 L59.7,7 L40.2,7" class="chair"/>
+</svg>

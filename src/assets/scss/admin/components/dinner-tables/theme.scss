@@ -1,0 +1,27 @@
+@import "./variables";
+
+.btn-std {
+    background-color: rgb(138, 138, 145);
+    color: $blueprint--background--color;
+
+    &:focus, &:active, &:hover {
+        color: #d0d0d0;
+    }
+}
+
+.form-control-std {
+    padding: 2px 7px;
+
+    &:focus {
+        color: #495057;
+        background-color: #f8f9fb;
+        border-color: $accent-color;
+        border-radius: 1px;
+        outline: 0;
+        box-shadow: 0 1px 3px $accent-color, 0 1px 2px $accent-color;
+    }
+}
+
+.footer-std {
+    background-color: $blueprint--background--color;
+}

@@ -1,0 +1,20 @@
+.btn-std {
+  background-color: #8a8a91;
+  color: #fff; }
+  .btn-std:focus, .btn-std:active, .btn-std:hover {
+    color: #d0d0d0; }
+
+.form-control-std {
+  padding: 2px 7px; }
+  .form-control-std:focus {
+    color: #495057;
+    background-color: #f8f9fb;
+    border-color: #93beee;
+    border-radius: 1px;
+    outline: 0;
+    box-shadow: 0 1px 3px #93beee, 0 1px 2px #93beee; }
+
+.footer-std {
+  background-color: #fff; }
+
+/*# sourceMappingURL=theme.css.map */

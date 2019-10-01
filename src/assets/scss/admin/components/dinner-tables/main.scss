@@ -1,0 +1,258 @@
+@import "./variables";
+
+.selection {
+    border: 1px solid rgb(221, 220, 222);
+    position: absolute;
+    z-index: 1000;
+    background-color: rgba(230, 229, 230, 0.4);
+}
+
+.floor--wrapper {
+    margin-top: 60px;
+    background-color: $workspace--background-color;
+}
+
+.operational-space {
+    position: relative;
+    min-width: 300px;
+    display: inline-block;
+
+    .controls {
+        margin: 10px 0 0 10px;
+        display: inline-block;
+        background-color: $workspace--background-color;
+        box-shadow: $container--shadow;
+        border-radius: 0.25rem;
+
+        & * {
+            margin-bottom: 0;
+        }
+
+        .btn {
+            background-color: $blueprint--background--color;
+            cursor: pointer;
+        }
+
+        .btn.active {
+            background-color: $accent-color;
+            color: $blueprint--background--color;
+        }
+    }
+}
+
+.blueprint--container {
+    border: none;
+    background-color: $blueprint--background--color;
+    height: 440px;
+    width: 540px;
+    padding: 20px;
+    margin-top: 10px;
+    box-shadow: $container--shadow;
+    position: relative;
+    overflow: hidden;
+
+    .blueprint {
+        border: 2px solid $blueprint--bold-divider--color;
+        background-image: linear-gradient($blueprint--bold-divider--color $blueprint--bold-divider--width, transparent $blueprint--bold-divider--width),
+        linear-gradient(90deg, $blueprint--bold-divider--color $blueprint--bold-divider--width, transparent $blueprint--bold-divider--width),
+        linear-gradient($blueprint--regular-divider--color $blueprint--regular-divider--width, transparent $blueprint--regular-divider--width),
+        linear-gradient(90deg, $blueprint--regular-divider--color $blueprint--regular-divider--width, transparent $blueprint--regular-divider--width);
+        background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+        background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+        width: 100%;
+        height: 100%;
+        vertical-align: top;
+    }
+
+    .ui-resizable-handle.ui-resizable-se {
+        bottom: 16px;
+        right: 16px;
+        background-color: rgb(163, 162, 163);
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        cursor: se-resize;
+    }
+}
+
+.workspace-sidebar {
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+}
+
+.properties-table {
+    width: $properties-table--width;
+    margin-top: 10px;
+    margin-left: 10px;
+    background-color: $blueprint--background--color;
+    box-shadow: $container--shadow;
+    border-radius: 1px;
+
+    & > * {
+        padding: 8px 10px;
+    }
+
+    .properties-table--header {
+        font-weight: bold;
+    }
+}
+
+.floors-dropdown {
+    margin-left: 10px;
+    width: $floors-dropdown--width;
+    margin-top: 10px;
+
+    & > button {
+        justify-content: left;
+        padding: 5px 12px;
+        background-color: $blueprint--background--color;
+        border-radius: 1px;
+
+        &::after {
+            color: $no-accent-color;
+            margin-left: 87px;
+        }
+    }
+
+    .dropdown-menu {
+        border: 1px solid $no-accent-color;
+
+        .edit-icon {
+            position: absolute;
+            right: 10px;
+        }
+
+        & > * {
+            padding: 5px 11px;
+        }
+
+        a.dropdown-item:hover {
+            background-color: $accent-color;
+            border-color: $accent-color;
+            color: $blueprint--background--color;
+        }
+    }
+}
+
+.elements--container {
+    margin: 10px;
+    background-color: $blueprint--background--color;
+    border: none;
+    box-shadow: $container--shadow;
+
+    .elements-header {
+        padding: 10px 12px;
+    }
+
+    .elements-row {
+        font-size: 0;
+        letter-spacing: 0;
+    }
+
+    .dinner-table--wrapper {
+        cursor: pointer;
+        display: inline-block;
+        border: $dinner-table--border-style;
+        transition: background-color 100ms;
+        border-left: none;
+        padding: $dinner-table--el-padding;
+
+        &:last-of-type {
+            border-right: none;
+        }
+
+        & > * {
+            width: $dinner-table--el-size;
+            height: $dinner-table--el-size;
+        }
+    }
+
+    & .elements-row:not(:first-of-type) .dinner-table--wrapper {
+        border-bottom: none;
+    }
+
+    & .elements-row:nth-last-child(2) .dinner-table--wrapper {
+        border-bottom: $dinner-table--border-style;
+    }
+
+    & .elements-row:last-of-type .dinner-table--wrapper {
+        border-right: $dinner-table--border-style;
+        border-top: none;
+    }
+}
+
+.shape--inserted {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    line-height: 0;
+    z-index: 999;
+    cursor: pointer;
+
+    &.ui-draggable-dragging {
+        cursor: grabbing;
+    }
+
+    .shape-text {
+        position: absolute;
+        color: white;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    &.active {
+        z-index: 1000;
+    }
+
+    .ui-rotatable-handle {
+        top: -40px;
+        width: $rotate-handle--width;
+        height: $rotate-handle--width;
+        background: url('./../../../admin/pages/shapes/basic/handle.svg');
+        background-size: $rotate-handle--width $rotate-handle--width;
+        visibility: hidden;
+    }
+
+    &.active .ui-rotatable-handle {
+        visibility: visible;
+    }
+}
+
+.loading {
+    visibility: hidden;
+}
+
+.operational-separator {
+    display: none;
+}
+
+.elements--container.vertical {
+    display: block;
+}
+
+.elements--container.horizontal {
+    display: none;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .operational-separator {
+        display: block;
+    }
+
+    .elements--container.vertical {
+        display: none;
+    }
+
+    .elements--container.horizontal {
+        display: block;
+    }
+}
+
+.edit-icon {
+    padding: 5px;
+
+    &:hover {
+        color: #ffdad6;
+    }
+}
